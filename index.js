@@ -17,6 +17,10 @@ client.on('message' , async message => {
         if(command.toLowerCase() == 'hello') {
             await message.reply("Hi!")
         }
+        //test commit for pull request
+        if(command.toLowerCase() == 'bye') {
+            await message.reply("Goodbye!")
+        }
     }
 })
 
