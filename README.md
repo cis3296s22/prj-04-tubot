@@ -3,23 +3,22 @@ This is a practical implementation of a multi-purpose Discord bot with the inten
 
 # How to run   
 - Download the latest binary from the Release section on the right on GitHub.  
-- On the command line uncompress using
+- On the command line, access the release folder using
 ```
-tar -xzf  
+cd tu-bot  
 ```
 - On the command line run with
 ```
-./hello
+node index.js
 ```
-- You will see Hello World! on your terminal. 
+- TU Bot will give a confirmation of online status on the command line, and it will be ready to be used in your server!
 
 # How to contribute
 Follow this project board to know the latest status of the project: [https://trello.com/tubot2]  
 
 ### How to build
-- Use this github repository: ... 
-- Specify what branch to use for a more stable release or for cutting edge development.  
-- Use InteliJ 11
-- Specify additional library to download if needed 
-- What file and target to compile and run. 
-- What is expected to happen when the app start. 
+- Use this github repository: https://github.com/cis3296s22/tu-bot
+- Specify what branch to use
+- Use any JavaScript IDE (VSCode, WebStorm, etc.)
+- Create .env file and store personal bot token (use .env.example)
+- Run bot using 'node index.js' in command line to start bot.
