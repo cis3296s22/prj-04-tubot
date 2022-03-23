@@ -22,10 +22,6 @@ client.on('message' , async message => {
             await message.reply("Goodbye!")
         }
 
-        if(command.toLowerCase() == 'hi') {
-            await message.reply("Hi!")
-        }
-
     }
 })
 
