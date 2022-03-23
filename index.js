@@ -21,7 +21,14 @@ client.on('message' , async message => {
         if(command.toLowerCase() == 'bye') {
             await message.reply("Goodbye!")
         }
+
+        if(command.toLowerCase() == 'hi') {
+            await message.reply("Hi!")
+        }
+
     }
 })
 
 client.login(process.env.DISCORD_BOT_TOKEN)
+
+//Erin's test commit
