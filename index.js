@@ -25,3 +25,5 @@ client.on('message' , async message => {
 })
 
 client.login(process.env.DISCORD_BOT_TOKEN)
+
+//Tommy's test commit
