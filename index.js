@@ -21,9 +21,13 @@ client.on('message' , async message => {
         if(command.toLowerCase() == 'bye') {
             await message.reply("Goodbye!")
         }
+
     }
 })
 
 client.login(process.env.DISCORD_BOT_TOKEN)
 
+
+//Erin's test commit
+ 
 //Tommy's test commit
