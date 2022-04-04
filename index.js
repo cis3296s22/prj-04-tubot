@@ -4,6 +4,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 
 const poll = require("./poll.js");
 const reminder = require("./reminder.js")
+const channel = require("./channel.js")
 
 client.on('ready' , () => {
     console.log('TU Bot is online!')
@@ -39,6 +40,12 @@ client.on('message' , async message => {
 
         if(command.toLowerCase() == 'remind'){
             reminder.remind(message);
+        }
+        if(command.toLowerCase() == 'textchat') {
+            channel.text(splitMessage , message);
+        }
+        if(command.toLowerCase() == 'voicechat') {
+            channel.voice(splitMessage , message);
         }
     }
 })
