@@ -4,6 +4,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 
 const poll = require("./poll.js");
 const reminder = require("./reminder.js")
+const channel = require("./channel.js")
 
 
 const help = require("./help.js")
@@ -56,6 +57,13 @@ client.on('message' , async message => {
 
         if(command.toLowerCase() == 'removerole'){
             roles.removeRole(splitMessage,message);
+
+        if(command.toLowerCase() == 'textchat') {
+            channel.text(splitMessage , message);
+        }
+        if(command.toLowerCase() == 'voicechat') {
+            channel.voice(splitMessage , message);
+
         }
     }
 })
