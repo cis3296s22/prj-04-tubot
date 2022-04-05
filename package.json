@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/cis3296s22/tu-bot#readme",
   "dependencies": {
+    "dayjs": "^1.11.0",
     "discord.js": "^13.6.0",
     "dotenv": "^16.0.0"
   }
