@@ -57,7 +57,7 @@ client.on('message' , async message => {
 
         if(command.toLowerCase() == 'removerole'){
             roles.removeRole(splitMessage,message);
-
+        }
         if(command.toLowerCase() == 'textchat') {
             channel.text(splitMessage , message);
         }
