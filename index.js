@@ -6,6 +6,10 @@ const poll = require("./poll.js");
 const reminder = require("./reminder.js")
 const channel = require("./channel.js")
 
+
+const help = require("./help.js")
+const roles = require("./roles.js")
+
 client.on('ready' , () => {
     console.log('TU Bot is online!')
 })
@@ -27,7 +31,8 @@ client.on('message' , async message => {
         }
 
         if(command.toLowerCase() == 'help'){
-            await message.reply("Commands: $tu hello, $tu bye, $tu poll, $tu assign, $tu remind")
+            help.help(splitMessage, message);
+            //await message.reply("Commands: $tu hello, $tu bye, $tu poll, $tu assign, $tu remind")
         }
 
         if (command.toLowerCase() == 'poll'){
@@ -41,11 +46,24 @@ client.on('message' , async message => {
         if(command.toLowerCase() == 'remind'){
             reminder.remind(message);
         }
+
+        if(command.toLowerCase() == 'createrole'){
+            roles.createRole(splitMessage,message);
+        }
+
+        if(command.toLowerCase() == 'giverole'){
+            roles.giveRole(splitMessage,message);
+        }
+
+        if(command.toLowerCase() == 'removerole'){
+            roles.removeRole(splitMessage,message);
+
         if(command.toLowerCase() == 'textchat') {
             channel.text(splitMessage , message);
         }
         if(command.toLowerCase() == 'voicechat') {
             channel.voice(splitMessage , message);
+
         }
     }
 })
