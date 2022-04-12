@@ -47,6 +47,10 @@ client.on('message' , async message => {
             reminder.remind(message);
         }
 
+        if(command.toLowerCase() == 'remindtime'){
+            reminder.changeReminderHour(splitMessage, message);
+        }
+        
         if(command.toLowerCase() == 'createrole'){
             roles.createRole(splitMessage,message);
         }

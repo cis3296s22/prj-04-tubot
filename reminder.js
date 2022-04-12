@@ -5,6 +5,7 @@ dayjs().format()
 //array to hold assignments added via assign command
 var assignments = [];
 var autoRemindRunning = false;
+var REMINDER_HOUR = 8; //default 8am
 
 //Add assignment to reminders list
 function assign(splitMessage, message){
@@ -83,13 +84,12 @@ function autoRemind(message){
 
     //send assignment reminder oncer per day at specified time
     const reminderDate = new Date();
-    const REMINDER_TIME = 8;    //8am
     let REMINDER_DAY = reminderDate.getDate();
 
     setInterval(() => {
         const today = new Date();
 
-        if(today.getDate() === REMINDER_DAY && today.getHours() === REMINDER_TIME){
+        if(today.getDate() === REMINDER_DAY && today.getHours() === REMINDER_HOUR){
             const month = today.getMonth() + 1;
             const day = today.getDate();
 
@@ -137,6 +137,39 @@ function autoRemind(message){
     }, 3600000) //3,600,000 = once per hour
 }
 
+function changeReminderHour(splitMessage, message){
+    const assignEmbed = new MessageEmbed()
+            .setTitle("Change Time of Auto Reminder")
+            .setDescription("Use $tu remindtime to change when the automatic reminder sends\n" +
+            "**Example: $tu remindtime 14**\n" + 
+            "The time will be set to 2pm\n" +
+            "*NOTE: Use 24 hour time*\n\n")
+
+    if(!splitMessage[2]){   //no assignment given
+        message.channel.send({ embeds: [assignEmbed] });
+        return;
+    }
+    
+    let newTime = parseInt(splitMessage[2]);
+    if(newTime == NaN || newTime > 24 || newTime < 0){
+        message.channel.send({ embeds: [assignEmbed] });
+        return;
+    }
+
+    REMINDER_HOUR = newTime;
+
+    let responseString = `Reminder time changed to ${newTime}:00 `;
+    if(newTime == 24 || newTime == 0)   //midnight
+        responseString += `(12:00 am)`;
+    else if(newTime > 11)   //pm
+        responseString += `(${newTime-12}:00 pm)`;
+    else    //am
+        responseString += 'am';
+
+    message.channel.send(responseString)
+
+}
+
 module.exports = {
-    assign, remind, autoRemind
+    assign, remind, autoRemind, changeReminderHour
 }
