@@ -6,7 +6,7 @@ function help(splitMessage, message) {
     {["`$tu bye`"] : "Has the bot say \"Goodbye!\""},
     {["`$tu poll`"] : "Creates a poll in the channel that members can vote on"},
     {["`$tu assign`"] : "Adds an assignment to the reminder list"},
-    {["`$tu createRole"] : "Creates role from users message"},
+    {["`$tu createRole`"] : "Creates role from users message"},
     {["`$tu giveRole`"] : "Givess a role to a user"},
     {["`$tu removeRole`"] : "Removes a role from a user"},
     {["`$tu textchat`"] : "Creates a text chat channel"},
