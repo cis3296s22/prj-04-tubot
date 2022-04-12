@@ -21,6 +21,7 @@ function assign(splitMessage, message){
     }
 
     const assignmentObj = {}
+    assignmentObj.id = assignments.length+1;
 
     //check if a date is given for the assignment
     let date = splitMessage[splitMessage.length-1];
@@ -51,6 +52,8 @@ function assign(splitMessage, message){
 
     assignments.sort(assignSort);
 
+    assignIDs();
+
     if(!autoRemindRunning){
         autoRemind(message);
         autoRemindRunning = true;
@@ -58,21 +61,23 @@ function assign(splitMessage, message){
 }
 
 //Academic Reminder
+//Sends a message containing all assignments
 function remind(message){
-
-    if(assignments.length < 1)
-        return;
 
     let allAssignments = "";
     
     for(let i in assignments){      //build description of embed
-        allAssignments += '- ' + assignments[i].assignment
+        allAssignments += assignments[i].id + '. ' + assignments[i].assignment
         if(assignments[i].date[0] !== 13){
             allAssignments += ` ${assignments[i].date[0]}/${assignments[i].date[1]}`;
         };
         allAssignments += '\n';
     }
 
+    if(assignments.length < 1){
+        allAssignments += 'There are no assignments due!'
+    }
+    
     const remindEmbed = new MessageEmbed()
             .setTitle("Assignments Due")
             .setDescription(allAssignments);
@@ -80,6 +85,8 @@ function remind(message){
     message.channel.send({ embeds: [remindEmbed] });
 }
 
+
+//Will send a reminder of assignments that are soon due periodically
 function autoRemind(message){
 
     //send assignment reminder oncer per day at specified time
@@ -137,12 +144,13 @@ function autoRemind(message){
     }, 3600000) //3,600,000 = once per hour
 }
 
+//Sets REMINDER_HOUR 
 function changeReminderHour(splitMessage, message){
     const assignEmbed = new MessageEmbed()
             .setTitle("Change Time of Auto Reminder")
             .setDescription("Use $tu remindtime to change when the automatic reminder sends\n" +
             "**Example: $tu remindtime 14**\n" + 
-            "The time will be set to 2pm\n" +
+            "The time will be set to 2pm\n\n" +
             "*NOTE: Use 24 hour time*\n\n")
 
     if(!splitMessage[2]){   //no assignment given
@@ -167,9 +175,50 @@ function changeReminderHour(splitMessage, message){
         responseString += 'am';
 
     message.channel.send(responseString)
+}
 
+//Deletes an assignment from assignments[] based on ID of assignment
+function deleteAssignment(splitMessage, message){
+    const assignEmbed = new MessageEmbed()
+        .setTitle("Delete Assignment")
+        .setDescription("Use $tu delete to delete an assignment using its ID\n" +
+        "**Example: $tu delete 3**\n" + 
+        "Assignment 3 will be deleted\n\n" +
+        "*NOTE: Use $tu remind to see all assignments and their IDs*\n\n")
+
+    if(!splitMessage[2]){   //no assignment given
+        message.channel.send({ embeds: [assignEmbed] });
+        return;
+    }
+
+    let id = parseInt(splitMessage[2])
+    if(id == NaN || id > assignments.length || id < 1){
+        message.channel.send({ embeds: [assignEmbed] });
+        return;
+    }
+
+    let deletedAssignment = assignments[id-1];
+    assignments.splice(id-1, 1);    //assignments[] is sorted, so its index is id-1
+
+    //Now reassign IDs
+    assignIDs();
+
+    message.channel.send(`Deleted Assignment ${id}: ${deletedAssignment.assignment}`)    
+}
+
+//Deletes all assignments
+function clearAssignments(message){
+    assignments = [];
+    message.channel.send("Cleared all assignments")
+}
+
+//used to reassign every assignment with an id, usually used after the array is sorted
+//or an assignment is deleted
+function assignIDs(){
+    for(let i = 0; i < assignments.length; i++)
+        assignments[i].id = i+1;
 }
 
 module.exports = {
-    assign, remind, autoRemind, changeReminderHour
+    assign, remind, autoRemind, changeReminderHour, deleteAssignment, clearAssignments
 }

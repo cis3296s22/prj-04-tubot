@@ -50,7 +50,15 @@ client.on('message' , async message => {
         if(command.toLowerCase() == 'remindtime'){
             reminder.changeReminderHour(splitMessage, message);
         }
-        
+
+        if(command.toLowerCase() == 'assigndelete'){
+            reminder.deleteAssignment(splitMessage, message);
+        }
+
+        if(command.toLowerCase() == 'assignclear'){
+            reminder.clearAssignments(message);
+        }
+
         if(command.toLowerCase() == 'createrole'){
             roles.createRole(splitMessage,message);
         }
