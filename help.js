@@ -8,7 +8,7 @@ function help(splitMessage, message) {
     {["`$tu assign`"] : "Adds an assignment to the reminder list"},
     {["`$tu remind`"] : "Sends embed containing all assignments"},
     {["`$tu remindtime`"] : "Sets time that automatic reminders are sent"},
-    {["`$tu assigndelete`"] : "Deletes an assignments"},
+    {["`$tu assigndelete`"] : "Deletes an assignment"},
     {["`$tu assignclear`"] : "Clears all assignments"},
     {["`$tu createRole`"] : "Creates role from users message"},
     {["`$tu giveRole`"] : "Givess a role to a user"},
