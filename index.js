@@ -71,7 +71,7 @@ client.on('message' , async message => {
             roles.removeRole(splitMessage,message);
         }
 
-        if(command.toLowerCase() == 'msgrole'){
+        if(command.toLowerCase() == 'msgRole'){
             roles.messageRole(splitMessage, message);
         }
 

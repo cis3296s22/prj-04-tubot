@@ -121,8 +121,8 @@ function messageRole(splitMessage, message) {
 
     const errorEmbed = new MessageEmbed()
         .setTitle("How to message a role")
-        .setDescription("Type $tu msgrole <rolename> <message>\n" +
-            "**Example: $tu msgrole Admin This is a direct message to the Admin role!**");
+        .setDescription("Type $tu msgRole <rolename> <message>\n" +
+            "**Example: $tu msgRole Admin This is a direct message to the Admin role!**");
     
     const {guild} = message;
     if(splitMessage[3]){
@@ -145,7 +145,7 @@ function messageRole(splitMessage, message) {
                 if(value._roles.includes(role.id))
                     filteredMembers.push(value)
             })
-            
+
             let dm = splitMessage.slice(3).join(" ");
             //Send DM to each user in filteredMembers
             filteredMembers.forEach(user => {

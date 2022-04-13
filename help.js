@@ -13,6 +13,7 @@ function help(splitMessage, message) {
     {["`$tu createRole`"] : "Creates role from users message"},
     {["`$tu giveRole`"] : "Givess a role to a user"},
     {["`$tu removeRole`"] : "Removes a role from a user"},
+    {["`$tu msgRole`"] : "Sends a message to all members with a given role"},
     {["`$tu textchat`"] : "Creates a text chat channel"},
     {["`$tu voicechat`"] : "Creates a voice chat channel"},
     {["`$tu help`"] : "Shows this"},];
