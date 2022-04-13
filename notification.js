@@ -32,9 +32,9 @@ function notify(splitMessage, message){
     }
 
     //creates signup message, if a user reacts, they are given the notification role (NotifyRole)
-    if(splitMessage[2] == 'signup'){
-        notifySignUp(splitMessage, message)
-    }
+    //if(splitMessage[2] == 'signup'){
+        //notifySignUp(splitMessage, message)
+    //}
 
     //add an announcement
     if(splitMessage[2] == 'add'){
