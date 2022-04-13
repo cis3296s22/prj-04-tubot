@@ -44,4 +44,14 @@ function poll(splitMessage, message) {
     }
 }
 
-module.exports = { poll };
+function pollTest1(splitMessage , message) {
+    const poll = splitMessage[2]
+    message.channel.send("Simple Poll created!");
+}
+
+function pollTest2(splitMessage , message) {
+    const poll = splitMessage[2]
+    message.channel.send("Multiple Choice Poll created!");
+}
+
+module.exports = { poll, pollTest1, pollTest2 };
