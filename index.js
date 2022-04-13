@@ -1,6 +1,6 @@
 require('dotenv').config()
 const { Client , Intents, MessageEmbed, MessageReaction } = require('discord.js')
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS ] });
 
 const poll = require("./poll.js");
 const reminder = require("./reminder.js")
@@ -70,6 +70,11 @@ client.on('message' , async message => {
         if(command.toLowerCase() == 'removerole'){
             roles.removeRole(splitMessage,message);
         }
+
+        if(command.toLowerCase() == 'msgrole'){
+            roles.messageRole(splitMessage, message);
+        }
+
         if(command.toLowerCase() == 'textchat') {
             channel.text(splitMessage , message);
         }
