@@ -219,6 +219,26 @@ function assignIDs(){
         assignments[i].id = i+1;
 }
 
+function assignTest(splitMessage , message) {
+    message.channel.send("Assignment added!");
+}
+function remindTest(splitMessage , message) {
+    message.channel.send("Message sent!");
+}
+function autoRemindTest(splitMessage , message) {
+    message.channel.send("Message sent!");
+}
+function changeReminderHourTest(splitMessage , message) {
+    message.channel.send("REMINDER_HOUR changed!");
+}
+function deleteAssignmentTest(splitMessage , message) {
+    message.channel.send("ID Assignment deleted!");
+}
+function clearAssignmentsTest(splitMessage , message) {
+    message.channel.send("Assignments cleared!");
+}
+
 module.exports = {
-    assign, remind, autoRemind, changeReminderHour, deleteAssignment, clearAssignments
+    assign, remind, autoRemind, changeReminderHour, deleteAssignment, clearAssignments, 
+    assignTest, remindTest, autoRemindTest, changeReminderHourTest, deleteAssignmentTest, clearAssignmentsTest
 }
