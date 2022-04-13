@@ -27,5 +27,4 @@ function help(splitMessage, message) {
     }
     message.channel.send(output);
 }
-
 module.exports = { help };

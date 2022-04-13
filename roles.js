@@ -183,7 +183,6 @@ function messageRole(splitMessage, message) {
             filteredMembers.forEach(user => {
                 user.send(dm)
             })
-           
         })
     }
 
