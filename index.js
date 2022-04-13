@@ -2,13 +2,16 @@ require('dotenv').config()
 const { Client , Intents, MessageEmbed, MessageReaction } = require('discord.js')
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS ] });
 
+const help = require("./help.js")
 const poll = require("./poll.js");
 const reminder = require("./reminder.js")
 const channel = require("./channel.js")
-
+const generateGroups = require("./generateGroups.js")
 
 const help = require("./help.js")
 const roles = require("./roles.js")
+const channel = require("./channel.js")
+const notification = require("./notification.js")
 
 client.on('ready' , () => {
     console.log('TU Bot is online!')
@@ -32,7 +35,6 @@ client.on('message' , async message => {
 
         if(command.toLowerCase() == 'help'){
             help.help(splitMessage, message);
-            //await message.reply("Commands: $tu hello, $tu bye, $tu poll, $tu assign, $tu remind")
         }
 
         if (command.toLowerCase() == 'poll'){
@@ -80,7 +82,14 @@ client.on('message' , async message => {
         }
         if(command.toLowerCase() == 'voicechat') {
             channel.voice(splitMessage , message);
+        }
 
+        if(command.toLowerCase() == 'notify'){
+            notification.notify(splitMessage, message)
+        }
+      
+        if(command.toLowerCase() == 'generategroups') {
+            generateGroups.generateGroups(splitMessage , message);
         }
     }
 })
