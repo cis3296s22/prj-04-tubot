@@ -5,6 +5,10 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 const help = require("./help.js")
 const poll = require("./poll.js");
 const reminder = require("./reminder.js")
+const channel = require("./channel.js")
+const generateGroups = require("./generateGroups.js")
+
+const help = require("./help.js")
 const roles = require("./roles.js")
 const channel = require("./channel.js")
 const notification = require("./notification.js")
@@ -73,10 +77,14 @@ client.on('message' , async message => {
         }
         if(command.toLowerCase() == 'voicechat') {
             channel.voice(splitMessage , message);
-
         }
+
         if(command.toLowerCase() == 'notify'){
             notification.notify(splitMessage, message)
+        }
+      
+        if(command.toLowerCase() == 'generategroups') {
+            generateGroups.generateGroups(splitMessage , message);
         }
     }
 })
