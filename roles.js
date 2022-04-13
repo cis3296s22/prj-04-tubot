@@ -1,5 +1,5 @@
 const { Client, Intents, MessageEmbed, MessageReaction } = require('discord.js');
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS] });
 
 //Creates role from users message
 function createRole(splitMessage, message) {
@@ -146,6 +146,50 @@ function removeRole(splitMessage, message) {
 
 }
 
+//Send message to every user with a role
+function messageRole(splitMessage, message) {
+    
+    message.delete()
+
+    const errorEmbed = new MessageEmbed()
+        .setTitle("How to message a role")
+        .setDescription("Type $tu msgRole <rolename> <message>\n" +
+            "**Example: $tu msgRole Admin This is a direct message to the Admin role!**");
+    
+    const {guild} = message;
+    if(splitMessage[3]){
+        const roleName = splitMessage[2];
+
+        message.guild.members.fetch().then(members =>{
+
+            const role = guild.roles.cache.find((role) =>{
+                return role.name === roleName
+            });
+
+            if(!role){
+                message.channel.send(`Role ${roleName} was not found`)
+                return
+            }
+
+            let filteredMembers = [];
+            members.forEach((value, key) => {
+                //console.log(value)
+                if(value._roles.includes(role.id))
+                    filteredMembers.push(value)
+            })
+
+            let dm = splitMessage.slice(3).join(" ");
+            //Send DM to each user in filteredMembers
+            filteredMembers.forEach(user => {
+                user.send(dm)
+            })
+        })
+    }
+
+    else
+        message.channel.send({ embeds: [errorEmbed] });
+}
+
 module.exports = {
-    createRole, giveRole, removeRole
+    createRole, giveRole, removeRole, messageRole
 }
