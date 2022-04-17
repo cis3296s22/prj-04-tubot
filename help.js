@@ -1,5 +1,7 @@
 const { Client, Intents, MessageEmbed, MessageReaction } = require('discord.js')
+/** @module help */
 
+/** @alias module:help~help */
 function help(splitMessage, message) {
     const commands = [
     {["`$tu hello`"] : "Has the bot say \"Hi!\""},
@@ -27,4 +29,5 @@ function help(splitMessage, message) {
     }
     message.channel.send(output);
 }
+
 module.exports = { help };

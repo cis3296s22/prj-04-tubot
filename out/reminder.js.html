@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: reminder.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: reminder.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const { Client , Intents, MessageEmbed, Message } = require('discord.js')
+var dayjs = require('dayjs')
+dayjs().format()
+/** @module reminder */
+
+//array to hold assignments added via assign command
+var assignments = [];
+var autoRemindRunning = false;
+var REMINDER_HOUR = 8; //default 8am
+
+//Add assignment to reminders list
+/** @alias module:reminder~assign */
+function assign(splitMessage, message){
+    
+    const assignEmbed = new MessageEmbed()
+            .setTitle("How to add assignment")
+            .setDescription("Use $tu assign to add an assignment\n" +
+            "**Example: $tu assign Quiz 2 3/29**\n\n")
+
+    if(!splitMessage[2]){   //no assignment given
+        message.channel.send({ embeds: [assignEmbed] });
+        return;
+    }
+
+    const assignmentObj = {}
+    assignmentObj.id = assignments.length+1;
+
+    //check if a date is given for the assignment
+    let date = splitMessage[splitMessage.length-1];
+    const formattedDate = dayjs(date).format("MM/DD");
+    
+    let addDate;
+    if(formattedDate !== 'Invalid Date'){
+        addDate = formattedDate.split("/"); //tuple with month and date
+        addDate[0] = parseInt(addDate[0])
+        addDate[1] = parseInt(addDate[1]) 
+        splitMessage.pop();  //remove date from the assignment 
+    }
+    else    //no date given for assignment
+        addDate = [13, 32]; //set to out of bounds date (will be sorted to end of array)
+
+    let assignment = splitMessage.slice(2).join(" ");
+    assignmentObj.assignment = assignment;
+
+    assignmentObj.date = addDate;
+    let dateWeight = addDate[0] * 32 + addDate[1];   //closer dates get smaller value, for sorting
+    assignmentObj.dateWeight = dateWeight;
+    assignments.push(assignmentObj);
+    message.channel.send("Assignment successfully added")
+
+    function assignSort(a, b){
+        return a.dateWeight - b.dateWeight;
+    }
+
+    assignments.sort(assignSort);
+
+    assignIDs();
+
+    if(!autoRemindRunning){
+        autoRemind(message);
+        autoRemindRunning = true;
+    }
+}
+
+//Academic Reminder
+//Sends a message containing all assignments
+/** @alias module:reminder~remind */
+function remind(message){
+
+    let allAssignments = "";
+    
+    for(let i in assignments){      //build description of embed
+        allAssignments += assignments[i].id + '. ' + assignments[i].assignment
+        if(assignments[i].date[0] !== 13){
+            allAssignments += ` ${assignments[i].date[0]}/${assignments[i].date[1]}`;
+        };
+        allAssignments += '\n';
+    }
+
+    if(assignments.length &lt; 1){
+        allAssignments += 'There are no assignments due!'
+    }
+    
+    const remindEmbed = new MessageEmbed()
+            .setTitle("Assignments Due")
+            .setDescription(allAssignments);
+
+    message.channel.send({ embeds: [remindEmbed] });
+}
+
+
+//Will send a reminder of assignments that are soon due periodically
+/** @alias module:reminder~autoRemind */
+function autoRemind(message){
+
+    //send assignment reminder oncer per day at specified time
+    const reminderDate = new Date();
+    let REMINDER_DAY = reminderDate.getDate();
+
+    setInterval(() => {
+        const today = new Date();
+
+        if(today.getDate() === REMINDER_DAY &amp;&amp; today.getHours() === REMINDER_HOUR){
+            const month = today.getMonth() + 1;
+            const day = today.getDate();
+
+            let todayAssignments = [];
+            let tomAssignments = [];
+
+            for(let i = 0; i &lt; assignments.length; i++){
+                //due date is today
+                if(assignments[i].date[0] == month &amp;&amp; assignments[i].date[1] == day){
+                    todayAssignments.push(assignments[i]);
+                    assignments.splice(i, 1);   //remove this assignment
+                    i--;    //so indices dont get skipped over
+                }
+                //due date is tomorrow
+                else if(assignments[i].date[0] == month &amp;&amp; assignments[i].date[1] == day+1)
+                    tomAssignments.push(assignments[i]);
+            }
+
+            let dueAssignments = "";
+            if(todayAssignments.length > 0){
+                dueAssignments += "**Due Today:**\n";
+                for(let i in todayAssignments)
+                    dueAssignments += '- ' + todayAssignments[i].assignment + '\n';
+            }
+            if(tomAssignments.length > 0){
+                dueAssignments += "**Due Tomorrow:**\n";
+                for(let i in tomAssignments)
+                    dueAssignments += '- ' + tomAssignments[i].assignment + '\n';
+            }
+
+            //send reminder if there are any assignments due today or tomorrow
+            if(dueAssignments !== ""){
+                const remindEmbed = new MessageEmbed()
+                            .setTitle(`Assignments Due ${month}/${day}`)
+                            .setDescription(dueAssignments);
+
+                message.channel.send({ embeds: [remindEmbed]});
+            }
+
+            //set REMINDER_DAY to be tomorrow
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            REMINDER_DAY = tomorrow.getDate();
+        }
+    }, 3600000) //3,600,000 = once per hour
+}
+
+//Sets REMINDER_HOUR 
+/** @alias module:reminder~changeReminderHour */
+function changeReminderHour(splitMessage, message){
+    const assignEmbed = new MessageEmbed()
+            .setTitle("Change Time of Auto Reminder")
+            .setDescription("Use $tu remindtime to change when the automatic reminder sends\n" +
+            "**Example: $tu remindtime 14**\n" + 
+            "The time will be set to 2pm\n\n" +
+            "*NOTE: Use 24 hour time*\n\n")
+
+    if(!splitMessage[2]){   //no assignment given
+        message.channel.send({ embeds: [assignEmbed] });
+        return;
+    }
+    
+    let newTime = parseInt(splitMessage[2]);
+    if(newTime == NaN || newTime > 24 || newTime &lt; 0){
+        message.channel.send({ embeds: [assignEmbed] });
+        return;
+    }
+
+    REMINDER_HOUR = newTime;
+
+    let responseString = `Reminder time changed to ${newTime}:00 `;
+    if(newTime == 24 || newTime == 0)   //midnight
+        responseString += `(12:00 am)`;
+    else if(newTime > 11)   //pm
+        responseString += `(${newTime-12}:00 pm)`;
+    else    //am
+        responseString += 'am';
+
+    message.channel.send(responseString)
+}
+
+//Deletes an assignment from assignments[] based on ID of assignment
+/** @alias module:reminder~deleteAssignment */
+function deleteAssignment(splitMessage, message){
+    const assignEmbed = new MessageEmbed()
+        .setTitle("Delete Assignment")
+        .setDescription("Use $tu delete to delete an assignment using its ID\n" +
+        "**Example: $tu delete 3**\n" + 
+        "Assignment 3 will be deleted\n\n" +
+        "*NOTE: Use $tu remind to see all assignments and their IDs*\n\n")
+
+    if(!splitMessage[2]){   //no assignment given
+        message.channel.send({ embeds: [assignEmbed] });
+        return;
+    }
+
+    let id = parseInt(splitMessage[2])
+    if(id == NaN || id > assignments.length || id &lt; 1){
+        message.channel.send({ embeds: [assignEmbed] });
+        return;
+    }
+
+    let deletedAssignment = assignments[id-1];
+    assignments.splice(id-1, 1);    //assignments[] is sorted, so its index is id-1
+
+    //Now reassign IDs
+    assignIDs();
+
+    message.channel.send(`Deleted Assignment ${id}: ${deletedAssignment.assignment}`)    
+}
+
+//Deletes all assignments
+/** @alias module:reminder~clearAssignments */
+function clearAssignments(message){
+    assignments = [];
+    message.channel.send("Cleared all assignments")
+}
+
+//used to reassign every assignment with an id, usually used after the array is sorted
+//or an assignment is deleted
+/** @alias module:reminder~assignIDs */
+function assignIDs(){
+    for(let i = 0; i &lt; assignments.length; i++)
+        assignments[i].id = i+1;
+}
+/** @alias module:reminder~assignTest */
+function assignTest(splitMessage , message) {
+    message.channel.send("Assignment added!");
+}
+/** @alias module:reminder~remindTest */
+function remindTest(splitMessage , message) {
+    message.channel.send("Message sent!");
+}
+/** @alias module:reminder~autoRemindTest */
+function autoRemindTest(splitMessage , message) {
+    message.channel.send("Message sent!");
+}
+/** @alias module:reminder~changeReminderHourTest */
+function changeReminderHourTest(splitMessage , message) {
+    message.channel.send("REMINDER_HOUR changed!");
+}
+/** @alias module:reminder~deleteAssignmentTest */
+function deleteAssignmentTest(splitMessage , message) {
+    message.channel.send("ID Assignment deleted!");
+}
+/** @alias module:reminder~clearAssignmentsTest */
+function clearAssignmentsTest(splitMessage , message) {
+    message.channel.send("Assignments cleared!");
+}
+
+module.exports = {
+    assign, remind, autoRemind, changeReminderHour, deleteAssignment, clearAssignments, 
+    assignTest, remindTest, autoRemindTest, changeReminderHourTest, deleteAssignmentTest, clearAssignmentsTest
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-channel.html">channel</a></li><li><a href="module-generateGroups.html">generateGroups</a></li><li><a href="module-help.html">help</a></li><li><a href="module-notification.html">notification</a></li><li><a href="module-poll.html">poll</a></li><li><a href="module-reminder.html">reminder</a></li><li><a href="module-roles.html">roles</a></li></ul><h3>Classes</h3><ul><li><a href="Client.html">Client</a></li></ul><h3>Global</h3><ul><li><a href="global.html#channel">channel</a></li><li><a href="global.html#generateGroups">generateGroups</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#notification">notification</a></li><li><a href="global.html#poll">poll</a></li><li><a href="global.html#reminder">reminder</a></li><li><a href="global.html#roles">roles</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Sun Apr 17 2022 06:18:44 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

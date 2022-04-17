@@ -3,9 +3,11 @@ const client = new Client({
 	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS],
 	partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
 });
+/** @module notification */
+
 
 var announcements = [];
-
+/** @alias module:notification~notify */
 function notify(splitMessage, message){
     
     //NOT IMPLEMENTED YET: $tu notify signup -> creates sign up message
@@ -94,7 +96,7 @@ function notifySignUp(splitMessage, message){
     });
 
 }
-
+/** @alias module:notification~notifyAdd */
 function notifyAdd(splitMessage, message){
 
     //$tu notify add ...
@@ -121,7 +123,7 @@ function notifyAdd(splitMessage, message){
     message.channel.send("Announcement successfully added");
 
 }
-
+/** @alias module:notification~notifyDelete */
 function notifyDelete(splitMessage, message){
 
     //$tu notify delete ...
@@ -152,12 +154,13 @@ function notifyDelete(splitMessage, message){
     message.channel.send(`Deleted Assignment ${id}: ${deletedAnnouncement.announcement}`)
 
 }
-
+/** @alias module:notification~notifyClear */
 function notifyClear(splitMessage, message){
     announcements = [];
     message.channel.send("Cleared all assignments")
 }
 
+/** @alias module:notification~notifyAll */
 function notifyAll(splitMessage, message){
 
     //grabbing the role
@@ -179,11 +182,11 @@ function notifyAll(splitMessage, message){
 
 }
 
+/** @alias module:notification~assignIDs */
 function assignIDs(){
     for(let i = 0; i < announcements.length; i++)
         announcements[i].id = i+1;
 }
-
 module.exports = {
     notify
 };

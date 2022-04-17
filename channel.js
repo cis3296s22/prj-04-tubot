@@ -1,6 +1,7 @@
 const { Client , Intents, MessageEmbed } = require('discord.js')
-
+/** @module channel */
 // Create text channel function
+/** @alias module:channel~text */
 function text(splitMessage , message) {
     const channelName = splitMessage[2]
     console.log(splitMessage)
@@ -17,6 +18,8 @@ function text(splitMessage , message) {
 }
 
 // Create voice channel function
+/** @alias module:channel~voice */
+ 
 function voice(splitMessage , message) {
     const channelName = splitMessage[2]
     
@@ -30,15 +33,19 @@ function voice(splitMessage , message) {
     })
     message.channel.send("Voice Channel created!");
 }
-
+/** @alias module:channel~textTest */
 function textTest(splitMessage , message) {
     const channelName = splitMessage[2]
     message.channel.send("Text Channel created!");
 }
+/**
+ *  @alias module:channel~voiceTest 
+ */
 function voiceTest(splitMessage , message) {
     const channelName = splitMessage[2]
     message.channel.send("Voice Channel created!");
 }
+ 
 
 module.exports = {
     text,

@@ -1,6 +1,7 @@
 const { Client , Intents, MessageEmbed, Message } = require('discord.js')
 var dayjs = require('dayjs')
 dayjs().format()
+/** @module reminder */
 
 //array to hold assignments added via assign command
 var assignments = [];
@@ -8,6 +9,7 @@ var autoRemindRunning = false;
 var REMINDER_HOUR = 8; //default 8am
 
 //Add assignment to reminders list
+/** @alias module:reminder~assign */
 function assign(splitMessage, message){
     
     const assignEmbed = new MessageEmbed()
@@ -62,6 +64,7 @@ function assign(splitMessage, message){
 
 //Academic Reminder
 //Sends a message containing all assignments
+/** @alias module:reminder~remind */
 function remind(message){
 
     let allAssignments = "";
@@ -87,6 +90,7 @@ function remind(message){
 
 
 //Will send a reminder of assignments that are soon due periodically
+/** @alias module:reminder~autoRemind */
 function autoRemind(message){
 
     //send assignment reminder oncer per day at specified time
@@ -145,6 +149,7 @@ function autoRemind(message){
 }
 
 //Sets REMINDER_HOUR 
+/** @alias module:reminder~changeReminderHour */
 function changeReminderHour(splitMessage, message){
     const assignEmbed = new MessageEmbed()
             .setTitle("Change Time of Auto Reminder")
@@ -178,6 +183,7 @@ function changeReminderHour(splitMessage, message){
 }
 
 //Deletes an assignment from assignments[] based on ID of assignment
+/** @alias module:reminder~deleteAssignment */
 function deleteAssignment(splitMessage, message){
     const assignEmbed = new MessageEmbed()
         .setTitle("Delete Assignment")
@@ -207,6 +213,7 @@ function deleteAssignment(splitMessage, message){
 }
 
 //Deletes all assignments
+/** @alias module:reminder~clearAssignments */
 function clearAssignments(message){
     assignments = [];
     message.channel.send("Cleared all assignments")
@@ -214,26 +221,32 @@ function clearAssignments(message){
 
 //used to reassign every assignment with an id, usually used after the array is sorted
 //or an assignment is deleted
+/** @alias module:reminder~assignIDs */
 function assignIDs(){
     for(let i = 0; i < assignments.length; i++)
         assignments[i].id = i+1;
 }
-
+/** @alias module:reminder~assignTest */
 function assignTest(splitMessage , message) {
     message.channel.send("Assignment added!");
 }
+/** @alias module:reminder~remindTest */
 function remindTest(splitMessage , message) {
     message.channel.send("Message sent!");
 }
+/** @alias module:reminder~autoRemindTest */
 function autoRemindTest(splitMessage , message) {
     message.channel.send("Message sent!");
 }
+/** @alias module:reminder~changeReminderHourTest */
 function changeReminderHourTest(splitMessage , message) {
     message.channel.send("REMINDER_HOUR changed!");
 }
+/** @alias module:reminder~deleteAssignmentTest */
 function deleteAssignmentTest(splitMessage , message) {
     message.channel.send("ID Assignment deleted!");
 }
+/** @alias module:reminder~clearAssignmentsTest */
 function clearAssignmentsTest(splitMessage , message) {
     message.channel.send("Assignments cleared!");
 }

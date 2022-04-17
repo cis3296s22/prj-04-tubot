@@ -1,14 +1,22 @@
+
 require('dotenv').config()
+/**@requires discord */
 const { Client , Intents, MessageEmbed, MessageReaction } = require('discord.js')
+/**@constructs Client*/
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS ] });
-
+/**@requires help */
 const help = require("./help.js")
+/**@requires poll */
 const poll = require("./poll.js");
+/**@requires reminder */
 const reminder = require("./reminder.js")
+/**@requires generateGroups */
 const generateGroups = require("./generateGroups.js")
-
+/**@requires roles */
 const roles = require("./roles.js")
+/**@requires channel */
 const channel = require("./channel.js")
+/**@requires notification */
 const notification = require("./notification.js")
 
 client.on('ready' , () => {
@@ -32,6 +40,7 @@ client.on('message' , async message => {
         }
 
         if(command.toLowerCase() == 'help'){
+            /** @requires help~help */
             help.help(splitMessage, message);
         }
 

@@ -1,7 +1,9 @@
 const { Client, Intents, MessageEmbed, MessageReaction } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS] });
+/** @module roles */
 
 //Creates role from users message
+/** @alias module:roles~createRole */
 function createRole(splitMessage, message) {
     //Message to inform user on how to use the createRole command
     const createEmbed = new MessageEmbed()
@@ -40,6 +42,7 @@ function createRole(splitMessage, message) {
     }
 }
 //Gives a role to a user
+/** @alias module:roles~giveRole */
 function giveRole(splitMessage, message) {
     //Message to inform user on how to use the createRole command
     const giveEmbed = new MessageEmbed()
@@ -94,6 +97,7 @@ function giveRole(splitMessage, message) {
 
 
 //Removes a role from a user
+/** @alias module:roles~removeRole */
 function removeRole(splitMessage, message) {
     //Message to inform user on how to use the createRole command
     const removeEmbed = new MessageEmbed()
@@ -147,6 +151,7 @@ function removeRole(splitMessage, message) {
 }
 
 //Send message to every user with a role
+/** @alias module:roles~messageRole */
 function messageRole(splitMessage, message) {
     
     message.delete()
