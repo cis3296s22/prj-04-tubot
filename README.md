@@ -24,6 +24,7 @@ Follow this project board to know the latest status of the project: [https://tre
 - To view JSDoc, on command line run with
 ```
 ./out/index.html
+```
 
 
 ### How to build
