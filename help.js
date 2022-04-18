@@ -10,12 +10,13 @@ function help(splitMessage, message) {
     {["`$tu remindtime`"] : "Sets time that automatic reminders are sent"},
     {["`$tu assigndelete`"] : "Deletes an assignment"},
     {["`$tu assignclear`"] : "Clears all assignments"},
-    {["`$tu createRole`"] : "Creates role from users message"},
-    {["`$tu giveRole`"] : "Givess a role to a user"},
-    {["`$tu removeRole`"] : "Removes a role from a user"},
+    {["`$tu createrole`"] : "Creates role from users message"},
+    {["`$tu giverole`"] : "Givess a role to a user"},
+    {["`$tu removerole`"] : "Removes a role from a user"},
     {["`$tu msgRole`"] : "Sends a message to all members with a given role"},
     {["`$tu textchat`"] : "Creates a text chat channel"},
     {["`$tu voicechat`"] : "Creates a voice chat channel"},
+    {["`$tu generategroup`"] : "Creates groups and randomly assigns users to them"},
     {["`$tu help`"] : "Shows this"},];
 
     let output = "Here is the full list of commands for TU Bot:\n";
