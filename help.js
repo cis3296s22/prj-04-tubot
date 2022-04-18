@@ -16,7 +16,7 @@ function help(splitMessage, message) {
     {["`$tu msgRole`"] : "Sends a message to all members with a given role"},
     {["`$tu textchat`"] : "Creates a text chat channel"},
     {["`$tu voicechat`"] : "Creates a voice chat channel"},
-    {["`$tu generategroup`"] : "Creates groups and randomly assigns users to them"},
+    {["`$tu generategroups`"] : "Creates groups and randomly assigns users to them"},
     {["`$tu help`"] : "Shows this"},];
 
     let output = "Here is the full list of commands for TU Bot:\n";
