@@ -1,8 +1,18 @@
+/**
+ * @module index 
+ * 
+*/
 
 require('dotenv').config()
-/**@requires discord */
+/**
+ * 
+ * @augments discord.js 
+*/
 const { Client , Intents, MessageEmbed, MessageReaction } = require('discord.js')
-/**@constructs Client*/
+/**
+ * @constructor
+ * @augments Client
+*/
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS ] });
 /**@requires help */
 const help = require("./help.js")
@@ -19,6 +29,7 @@ const channel = require("./channel.js")
 /**@requires notification */
 const notification = require("./notification.js")
 
+/**@func on('ready') */
 client.on('ready' , () => {
     console.log('TU Bot is online!')
 })
@@ -40,7 +51,6 @@ client.on('message' , async message => {
         }
 
         if(command.toLowerCase() == 'help'){
-            /** @requires help~help */
             help.help(splitMessage, message);
         }
 

@@ -1,7 +1,11 @@
 const { Client, Intents, MessageEmbed, MessageReaction } = require('discord.js')
 /** @module help */
 
-/** @alias module:help~help */
+/** Lists all commands for TU Bot 
+ * @alias module:help~help 
+ * @param splitMessage
+ * @param message
+ */
 function help(splitMessage, message) {
     const commands = [
     {["`$tu hello`"] : "Has the bot say \"Hi!\""},

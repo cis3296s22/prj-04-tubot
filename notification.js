@@ -5,9 +5,13 @@ const client = new Client({
 });
 /** @module notification */
 
-
+/**@var {array} announcements */
 var announcements = [];
-/** @alias module:notification~notify */
+/** 
+ * @alias module:notification~notify
+ * @param splitMessage
+ * @param message
+ */
 function notify(splitMessage, message){
     
     //NOT IMPLEMENTED YET: $tu notify signup -> creates sign up message
@@ -96,7 +100,11 @@ function notifySignUp(splitMessage, message){
     });
 
 }
-/** @alias module:notification~notifyAdd */
+/** 
+ * @alias module:notification~notifyAdd 
+ * @param splitMessage
+ * @param message
+*/
 function notifyAdd(splitMessage, message){
 
     //$tu notify add ...
@@ -123,7 +131,11 @@ function notifyAdd(splitMessage, message){
     message.channel.send("Announcement successfully added");
 
 }
-/** @alias module:notification~notifyDelete */
+/** 
+ * @alias module:notification~notifyDelete 
+ * @param splitMessage
+ * @param message
+*/
 function notifyDelete(splitMessage, message){
 
     //$tu notify delete ...
@@ -154,13 +166,21 @@ function notifyDelete(splitMessage, message){
     message.channel.send(`Deleted Assignment ${id}: ${deletedAnnouncement.announcement}`)
 
 }
-/** @alias module:notification~notifyClear */
+/** 
+ * @alias module:notification~notifyClear 
+ * @param splitMessage
+ * @param message
+*/
 function notifyClear(splitMessage, message){
     announcements = [];
     message.channel.send("Cleared all assignments")
 }
 
-/** @alias module:notification~notifyAll */
+/** 
+ * @alias module:notification~notifyAll 
+ * @param splitMessage
+ * @param message
+*/
 function notifyAll(splitMessage, message){
 
     //grabbing the role

@@ -6,6 +6,8 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 */
 /** Generates random groups
  * @alias module:generateGroups~generateGroups
+ * @param splitMessage
+ * @param message
  */
 function generateGroups(splitMessage, message) {
     //Message to inform user how to use the command
