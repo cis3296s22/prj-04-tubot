@@ -103,13 +103,13 @@ function notifyDelete(splitMessage, message){
     announcements.splice(id-1, 1);
     assignIDs();
 
-    message.channel.send(`Deleted Assignment ${id}: ${deletedAnnouncement.announcement}`)
+    message.channel.send(`Deleted announcement ${id}: ${deletedAnnouncement.announcement}`)
 
 }
 
 function notifyClear(splitMessage, message){
     announcements = [];
-    message.channel.send("Cleared all assignments")
+    message.channel.send("Cleared all announcement")
 }
 
 function notifyAll(splitMessage, message){
