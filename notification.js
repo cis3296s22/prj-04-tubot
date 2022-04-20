@@ -8,13 +8,9 @@ var announcements = [];
 
 function notify(splitMessage, message){
     
-    //NOT IMPLEMENTED YET: $tu notify signup -> creates sign up message
     //$tu notify add announcement -> adds an announcement to the list
     //$tu notify delete # -> adds an announcement to the list
     //$tu notify all-> notifies everyone who reacted to message
-
-    //(TO BE IMPLEMENTED LATER)
-    //"Use $tu notify signup to create a sign up message, those who react will get notifications from notify\n"
 
     const notifyEmbed = new MessageEmbed()
         .setTitle("How to create announcements and notify users with the notification role")
@@ -30,11 +26,6 @@ function notify(splitMessage, message){
     if (!splitMessage[2]){
         message.channel.send({ embeds: [notifyEmbed] });
     }
-
-    //creates signup message, if a user reacts, they are given the notification role (NotifyRole)
-    //if(splitMessage[2] == 'signup'){
-        //notifySignUp(splitMessage, message)
-    //}
 
     //add an announcement
     if(splitMessage[2] == 'add'){
@@ -55,43 +46,6 @@ function notify(splitMessage, message){
     if(splitMessage[2] == 'all'){
         notifyAll(splitMessage, message)
     }
-
-}
-
-//not ready for demo but rest of the commands are
-function notifySignUp(splitMessage, message){
-
-    const notifyRole = message.guild.roles.cache.find(role => role.name === "NotifyRole");
-
-    message.channel.send("React to sign up for notifications!").then(messageReaction => {
-        messageReaction.react("👍");
-        message.delete(5000);
-    });
-
-    
-    const handleReaction = (reaction, user, add) => {
-
-        const emoji = reaction._emoji.name
-        const { guild } = reaction.message
-        const roleName = "NotifyRole"
-        const role = guild.roles.cache.find(role => role.name === roleName)
-        const member = guild.members.cache.find(member => member.id === user.id)
-
-        if(add){
-            member.roles.add(role)
-        } else{
-            member.roles.remove(role)
-        }
-
-    }
-
-    client.on('messageReactionAdd', async (reaction, user) => {
-        handleReaction(reaction, user, true)
-    });
-
-    client.on('messageReactionRemove', async (reaction, user) => {
-        handleReaction(reaction, user, false)
-    });
 
 }
 
@@ -149,13 +103,13 @@ function notifyDelete(splitMessage, message){
     announcements.splice(id-1, 1);
     assignIDs();
 
-    message.channel.send(`Deleted Assignment ${id}: ${deletedAnnouncement.announcement}`)
+    message.channel.send(`Deleted announcement ${id}: ${deletedAnnouncement.announcement}`)
 
 }
 
 function notifyClear(splitMessage, message){
     announcements = [];
-    message.channel.send("Cleared all assignments")
+    message.channel.send("Cleared all announcement")
 }
 
 function notifyAll(splitMessage, message){
