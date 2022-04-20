@@ -11,7 +11,7 @@ function help(splitMessage, message) {
     {["`$tu assigndelete`"] : "Deletes an assignment"},
     {["`$tu assignclear`"] : "Clears all assignments"},
     {["`$tu createrole`"] : "Creates role from users message"},
-    {["`$tu giverole`"] : "Givess a role to a user"},
+    {["`$tu giverole`"] : "Gives a role to a user"},
     {["`$tu removerole`"] : "Removes a role from a user"},
     {["`$tu msgRole`"] : "Sends a message to all members with a given role"},
     {["`$tu textchat`"] : "Creates a text chat channel"},
