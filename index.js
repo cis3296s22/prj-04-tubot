@@ -1,16 +1,42 @@
+/** @module index */
+/** @interface Discord */
+
 require('dotenv').config()
+
+/** @constructor Intents */
+/** @constructor MessageEmbed */
+/** @constructor MessageReaction */
+/** @constructor Client */
+
 const { Client , Intents, MessageEmbed, MessageReaction } = require('discord.js')
+/**
+ * @const {Client} client
+ * 
+*/
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS ] });
-
+/**
+ * @requires help */
 const help = require("./help.js")
+/**@requires poll */
 const poll = require("./poll.js");
+/**@requires reminder */
 const reminder = require("./reminder.js")
+/**@requires generateGroups */
 const generateGroups = require("./generateGroups.js")
-
+/**@requires roles */
 const roles = require("./roles.js")
+/**@requires channel */
 const channel = require("./channel.js")
+/**@requires notification */
 const notification = require("./notification.js")
 
+/**
+ * @event Client#on
+ * @desc Listening function for client on event
+ * @property {string} ready
+ * @property {string} message
+ * @property {async} message
+*/
 client.on('ready' , () => {
     console.log('TU Bot is online!')
 })
@@ -95,5 +121,9 @@ client.on('message' , async message => {
         }
     }
 })
-
+/**
+ * @event Client#login
+ * @desc Listening function for client login event
+ * @property {process.env} DISCORD_BOT_TOKEN
+ */
 client.login(process.env.DISCORD_BOT_TOKEN)

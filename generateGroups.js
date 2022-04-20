@@ -1,9 +1,18 @@
+/** @module generateGroups */
 const { Client, Intents, MessageEmbed} = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
-//Generates random groups
+/** Generates random groups
+ * @alias module:generateGroups~generateGroups
+ * @param {string[]} splitMessage
+ * @param {string} message
+ */
 async function generateGroups(splitMessage, message) {
-    //Message to inform user how to use the command
+    /**Message to inform user how to use the command
+     * @const {MessageEmbed} groupEmbed
+     * @protected
+     */ 
+
     const groupEmbed = new MessageEmbed()
     .setTitle("How to generate groups")
     .setDescription("Type in the number of groups you want to generate and the name\n"

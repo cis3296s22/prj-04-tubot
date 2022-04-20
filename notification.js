@@ -1,16 +1,24 @@
+/** @module notification */
 const { Client, Intents, MessageEmbed, Message, MessageReaction } = require('discord.js')
 const client = new Client({
 	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS],
 	partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
 });
 
-var announcements = [];
 
+/**@var {array} announcements */
+var announcements = [];
+/** 
+ * @alias module:notification~notify
+ * @param {string[]} splitMessage
+ * @param {string} message
+ */
 function notify(splitMessage, message){
     
     //$tu notify add announcement -> adds an announcement to the list
     //$tu notify delete # -> adds an announcement to the list
     //$tu notify all-> notifies everyone who reacted to message
+
 
     const notifyEmbed = new MessageEmbed()
         .setTitle("How to create announcements and notify users with the notification role")
@@ -49,6 +57,12 @@ function notify(splitMessage, message){
 
 }
 
+
+/** 
+ * @alias module:notification~notifyAdd 
+ * @param {string[]} splitMessage
+ * @param {string} message
+*/
 function notifyAdd(splitMessage, message){
 
     //$tu notify add ...
@@ -75,7 +89,11 @@ function notifyAdd(splitMessage, message){
     message.channel.send("Announcement successfully added");
 
 }
-
+/** 
+ * @alias module:notification~notifyDelete 
+ * @param {string[]} splitMessage
+ * @param {string} message
+*/
 function notifyDelete(splitMessage, message){
 
     //$tu notify delete ...
@@ -106,12 +124,21 @@ function notifyDelete(splitMessage, message){
     message.channel.send(`Deleted announcement ${id}: ${deletedAnnouncement.announcement}`)
 
 }
-
+/** 
+ * @alias module:notification~notifyClear 
+ * @param {string[]} splitMessage
+ * @param {string} message
+*/
 function notifyClear(splitMessage, message){
     announcements = [];
     message.channel.send("Cleared all announcement")
 }
 
+/** 
+ * @alias module:notification~notifyAll 
+ * @param {string[]} splitMessage
+ * @param {string} message
+*/
 function notifyAll(splitMessage, message){
 
     //grabbing the role
@@ -133,11 +160,11 @@ function notifyAll(splitMessage, message){
 
 }
 
+/** @alias module:notification~assignIDs */
 function assignIDs(){
     for(let i = 0; i < announcements.length; i++)
         announcements[i].id = i+1;
 }
-
 module.exports = {
     notify
 };

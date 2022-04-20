@@ -1,9 +1,19 @@
+/** @module roles */
 const { Client, Intents, MessageEmbed, MessageReaction } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS] });
 
-//Creates role from users message
+
+
+/**Creates role from users message 
+ * @alias module:roles~createRole 
+ * @param {string[]} splitMessage
+ * @param {string} message
+*/
 function createRole(splitMessage, message) {
-    //Message to inform user on how to use the createRole command
+    /**Message to inform user on how to use the createRole command
+     * @const {MessageEmbed} createEmbed
+     * @protected
+     */ 
     const createEmbed = new MessageEmbed()
     .setTitle("How to create a role")
     .setDescription("Type the new role name after the command\n" +
@@ -39,9 +49,17 @@ function createRole(splitMessage, message) {
         message.channel.send({ embeds: [createEmbed] });
     }
 }
-//Gives a role to a user
+
+/**Gives a role to a user
+ * @alias module:roles~giveRole 
+ * @param {string[]} splitMessage
+ * @param {string} message
+*/
 function giveRole(splitMessage, message) {
-    //Message to inform user on how to use the createRole command
+    /**Message to inform user on how to use the createRole command
+     * @const {MessageEmbed} giveEmbed
+     * @protected
+     */ 
     const giveEmbed = new MessageEmbed()
     .setTitle("How to give a user a role")
     .setDescription("Type @ user name and the role you want to give\n" +
@@ -93,9 +111,17 @@ function giveRole(splitMessage, message) {
 }
 
 
-//Removes a role from a user
+
+/**Removes a role from a user 
+ * @alias module:roles~removeRole 
+ * @param {string[]} splitMessage
+ * @param {string} message
+*/
 function removeRole(splitMessage, message) {
-    //Message to inform user on how to use the createRole command
+    /**Message to inform user on how to use the createRole command
+     * @const {MessageEmbed} removeEmbed
+     * @protected
+     */ 
     const removeEmbed = new MessageEmbed()
     .setTitle("How to revoke a user's role")
     .setDescription("Type @ user name and the role you want to revoke\n" +
@@ -146,7 +172,12 @@ function removeRole(splitMessage, message) {
 
 }
 
-//Send message to every user with a role
+
+/**Send message to every user with a role 
+ * @alias module:roles~messageRole 
+ * @param {string[]} splitMessage
+ * @param {string} message
+*/
 function messageRole(splitMessage, message) {
     
     message.delete()

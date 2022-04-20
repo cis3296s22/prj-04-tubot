@@ -1,15 +1,38 @@
+/** @module reminder */
 const { Client , Intents, MessageEmbed, Message } = require('discord.js')
+
 var dayjs = require('dayjs')
 dayjs().format()
 
-//array to hold assignments added via assign command
+
+/** 
+ * @var {array} assignments
+ * @desc array to hold assignments added via assign command
+ * */
 var assignments = [];
+/**
+ * @var {boolean} autoRemindRunning
+ * @desc boolean expression to turn auto reminders on and off, defualt false
+ */
 var autoRemindRunning = false;
+/**
+ * @var {number} REMINDER_HOUR
+ * @desc hour used for auto reminders, default 8AM
+ */
 var REMINDER_HOUR = 8; //default 8am
 
-//Add assignment to reminders list
+
+/** 
+ * @alias module:reminder~assign 
+ * @desc Add assignment to reminders list
+ * @param {string[]} splitMessage
+ * @param {string} message
+*/
 function assign(splitMessage, message){
-    
+    /**
+     * @const {MessageEmbed} assignEmbed
+     * @protected
+     */
     const assignEmbed = new MessageEmbed()
             .setTitle("How to add assignment")
             .setDescription("Use $tu assign to add an assignment\n" +
@@ -61,7 +84,12 @@ function assign(splitMessage, message){
 }
 
 //Academic Reminder
-//Sends a message containing all assignments
+
+/** 
+ * @alias module:reminder~remind 
+ * @desc Sends a message containing all assignments
+ * @param {string} message
+*/
 function remind(message){
 
     let allAssignments = "";
@@ -77,7 +105,10 @@ function remind(message){
     if(assignments.length < 1){
         allAssignments += 'There are no assignments due!'
     }
-    
+    /**
+     * @const {MessageEmbed} remindEmbed
+     * @protected
+     */
     const remindEmbed = new MessageEmbed()
             .setTitle("Assignments Due")
             .setDescription(allAssignments);
@@ -85,8 +116,11 @@ function remind(message){
     message.channel.send({ embeds: [remindEmbed] });
 }
 
-
-//Will send a reminder of assignments that are soon due periodically
+/**
+ *  @alias module:reminder~autoRemind 
+ * @desc Sends a reminder of assignments that are soon due periodically
+ * @param {string} message
+*/
 function autoRemind(message){
 
     //send assignment reminder oncer per day at specified time
@@ -151,7 +185,12 @@ function autoRemind(message){
     }, 5000) //3,600,000 = once per hour
 }
 
-//Sets REMINDER_HOUR 
+/**
+ *  @alias module:reminder~changeReminderHour 
+ * @desc Sets REMINDER_HOUR
+ * @param {string[]} splitMessage
+ * @param {string} message
+ */
 function changeReminderHour(splitMessage, message){
     const assignEmbed = new MessageEmbed()
             .setTitle("Change Time of Auto Reminder")
@@ -184,7 +223,13 @@ function changeReminderHour(splitMessage, message){
     message.channel.send(responseString)
 }
 
-//Deletes an assignment from assignments[] based on ID of assignment
+
+/** 
+ * @alias module:reminder~deleteAssignment 
+ * @dsec Deletes an assignment from assignments[] based on ID of assignment
+ * @param {string[]} splitMessage
+ * @param {string} message
+*/
 function deleteAssignment(splitMessage, message){
     const assignEmbed = new MessageEmbed()
         .setTitle("Delete Assignment")
@@ -213,34 +258,78 @@ function deleteAssignment(splitMessage, message){
     message.channel.send(`Deleted Assignment ${id}: ${deletedAssignment.assignment}`)    
 }
 
-//Deletes all assignments
+
+/** 
+ * @alias module:reminder~clearAssignments 
+ * @dsec Deletes all assignments
+ * @param {string} message
+*/
 function clearAssignments(message){
     assignments = [];
     message.channel.send("Cleared all assignments")
 }
 
-//used to reassign every assignment with an id, usually used after the array is sorted
-//or an assignment is deleted
+
+/** 
+ * @alias module:reminder~assignIDs 
+ * @desc Used to reassign every assignment with an id, usually used after the array is sorted or an assignment is deleted
+ * 
+*/
 function assignIDs(){
     for(let i = 0; i < assignments.length; i++)
         assignments[i].id = i+1;
 }
-
+/**
+ *  @alias module:reminder~assignTest 
+ * @desc Used for assign() testing
+ * @param {string[]} splitMessage
+ * @param {string} message
+*/
 function assignTest(splitMessage , message) {
     message.channel.send("Assignment added!");
 }
+/** 
+ * @alias module:reminder~remindTest 
+ * @desc Used for remind() testing
+ * @param {string[]} splitMessage
+ * @param {string} message
+*/
 function remindTest(splitMessage , message) {
     message.channel.send("Message sent!");
 }
+/** 
+ * @alias module:reminder~autoRemindTest 
+ * @desc Used for autoRemind() testing
+ * @param {string[]} splitMessage
+ * @param {string} message
+*/
 function autoRemindTest(splitMessage , message) {
     message.channel.send("Message sent!");
 }
+/** 
+ * @alias module:reminder~changeReminderHourTest
+ * @desc Used for changeReminderHour() testing
+ * @param {string[]} splitMessage
+ * @param {string} message
+ */
 function changeReminderHourTest(splitMessage , message) {
     message.channel.send("REMINDER_HOUR changed!");
 }
+/** 
+ * @alias module:reminder~deleteAssignmentTest
+ * @desc Used for deleteAssignment() testing
+ * @param {string[]} splitMessage
+ * @param {string} message
+ */
 function deleteAssignmentTest(splitMessage , message) {
     message.channel.send("ID Assignment deleted!");
 }
+/** 
+ * @alias module:reminder~clearAssignmentsTest 
+ * @desc Used for clearAssignments() testing
+ * @param {string[]} splitMessage
+ * @param {string} message
+*/
 function clearAssignmentsTest(splitMessage , message) {
     message.channel.send("Assignments cleared!");
 }

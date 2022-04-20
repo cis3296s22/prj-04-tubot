@@ -1,8 +1,21 @@
+/**@module poll */
 const { Client, Intents, MessageEmbed, MessageReaction } = require('discord.js')
 
+/**Creates a poll 
+ * @alias module:poll~poll 
+ * @param {string[]} splitMessage
+ * @param {string} message
+*/
 function poll(splitMessage, message) {
+    /**
+     * @const {array} nums
+     * @protected
+     */
     const nums = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣"];
-    //Error message if too few arguments ar given
+    /**Error message if too few arguments ar given
+     * @const {MessageEmbed} pollEmbed
+     * @protected
+     */
     const pollEmbed = new MessageEmbed()
         .setTitle("How to make a poll")
         .setDescription("Ask a question for a yes or no poll\n" +
@@ -44,11 +57,23 @@ function poll(splitMessage, message) {
     }
 }
 
+/** Used to test yes/no poll 
+ * @alias module:poll~pollTest1 
+ * @param {string[]} splitMessage
+ * @param {string} message
+ * @returns message
+ */
 function pollTest1(splitMessage , message) {
     const poll = splitMessage[2]
     message.channel.send("Simple Poll created!");
 }
 
+/**Used to test multiple choice poll 
+ * @alias module:poll~pollTest2 
+ * @param {string[]} splitMessage
+ * @param {string} message
+ * @returns message 
+*/
 function pollTest2(splitMessage , message) {
     const poll = splitMessage[2]
     message.channel.send("Multiple Choice Poll created!");

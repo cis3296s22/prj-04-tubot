@@ -1,7 +1,18 @@
+/** @module channel */
 const { Client , Intents, MessageEmbed } = require('discord.js')
 
-// Create text channel function
+
+/** 
+ * @alias module:channel~text 
+ * @desc Creates text channel 
+ * @param {string[]} splitMessage 
+ * @param {string} message
+*/
 function text(splitMessage , message) {
+    /**
+     * @const {string} channelName 
+     * @protected
+    */
     const channelName = splitMessage[2]
     console.log(splitMessage)
     console.log(message.guild.channels)
@@ -10,13 +21,24 @@ function text(splitMessage , message) {
     })
     
     .then((channel) => { // Puts it into main text channel category
+        /**
+         * @const {string} category 
+         * @default '937897944227667978'
+         * @protected
+        */
         const category = '937897944227667978' // Category ID
         channel.setParent(category)
     })
     message.channel.send("Text Channel created!");
 }
 
-// Create voice channel function
+
+/** 
+ * @alias module:channel~voice
+ * @desc Creates voice channel
+ * @param {string[]} splitMessage
+ * @param {string} message
+ */
 function voice(splitMessage , message) {
     const channelName = splitMessage[2]
     
@@ -30,15 +52,27 @@ function voice(splitMessage , message) {
     })
     message.channel.send("Voice Channel created!");
 }
-
+/**
+ * @alias module:channel~textTest 
+ * @desc Used to test text channel function
+ * @param {string[]} splitMessage
+ * @param {string} message
+*/
 function textTest(splitMessage , message) {
     const channelName = splitMessage[2]
     message.channel.send("Text Channel created!");
 }
+/**
+ * @alias module:channel~voiceTest 
+ * @desc Used to test voice channel function
+ * @param {string[]} splitMessage
+ * @param {string} message
+ */
 function voiceTest(splitMessage , message) {
     const channelName = splitMessage[2]
     message.channel.send("Voice Channel created!");
 }
+ 
 
 module.exports = {
     text,

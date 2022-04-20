@@ -36,6 +36,17 @@ TU-Bot is a practical implementation of a multi-purpose Discord bot with the int
 # How to contribute
 Follow this project board to know the latest status of the project: [https://trello.com/tubot2]  
 
+### JSDoc Design Documentation
+- To generate JSDoc, on the command line run with
+```
+./node_modules/.bin/jsdoc index.js generateGroups.js channel.js help.js notification.js poll.js reminder.js roles.js
+```
+- To view JSDoc, on command line run with
+```
+./out/index.html
+```
+
+
 ### How to build
 - Use this github repository: https://github.com/cis3296s22/tu-bot
 - Specify what branch to use
