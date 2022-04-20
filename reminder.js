@@ -26,9 +26,9 @@ function assign(splitMessage, message){
     //check if a date is given for the assignment
     let date = splitMessage[splitMessage.length-1];
     const formattedDate = dayjs(date).format("MM/DD");
-    
     let addDate;
-    if(formattedDate !== 'Invalid Date'){
+    
+    if(formattedDate !== 'Invalid Date' && date.includes('/')){
         addDate = formattedDate.split("/"); //tuple with month and date
         addDate[0] = parseInt(addDate[0])
         addDate[1] = parseInt(addDate[1]) 
@@ -104,11 +104,18 @@ function autoRemind(message){
             let tomAssignments = [];
 
             for(let i = 0; i < assignments.length; i++){
-                //due date is today
-                if(assignments[i].date[0] == month && assignments[i].date[1] == day){
-                    todayAssignments.push(assignments[i]);
+
+                //assignmnet due date is passed
+                if(assignments[i].date[0] < month || (assignments[i].date[0] == month && assignments[i].date[1] < day)){
                     assignments.splice(i, 1);   //remove this assignment
                     i--;    //so indices dont get skipped over
+                }
+
+                //due date is today
+                else if(assignments[i].date[0] == month && assignments[i].date[1] == day){
+                    todayAssignments.push(assignments[i]);
+                    //assignments.splice(i, 1);   //remove this assignment
+                    //i--;    //so indices dont get skipped over
                 }
                 //due date is tomorrow
                 else if(assignments[i].date[0] == month && assignments[i].date[1] == day+1)
@@ -141,7 +148,7 @@ function autoRemind(message){
             tomorrow.setDate(tomorrow.getDate() + 1);
             REMINDER_DAY = tomorrow.getDate();
         }
-    }, 3600000) //3,600,000 = once per hour
+    }, 5000) //3,600,000 = once per hour
 }
 
 //Sets REMINDER_HOUR 
