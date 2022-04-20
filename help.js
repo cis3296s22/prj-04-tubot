@@ -3,8 +3,8 @@ const { Client, Intents, MessageEmbed, MessageReaction } = require('discord.js')
 
 /** Lists all commands for TU Bot 
  * @alias module:help~help 
- * @param splitMessage
- * @param message
+ * @param {string} splitMessage
+ * @param {string} message
  */
 function help(splitMessage, message) {
     const commands = [

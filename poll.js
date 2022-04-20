@@ -1,10 +1,12 @@
 const { Client, Intents, MessageEmbed, MessageReaction } = require('discord.js')
-/** @module poll */
+/** 
+ * @module poll 
+*/
 
 /**Creates a poll 
  * @alias module:poll~poll 
- * @param splitMessage
- * @param message
+ * @param {string} splitMessage
+ * @param {string} message
 */
 function poll(splitMessage, message) {
     const nums = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣"];
@@ -52,8 +54,9 @@ function poll(splitMessage, message) {
 
 /** Used to test yes/no poll 
  * @alias module:poll~pollTest1 
- * @param splitMessage
- * @param message
+ * @param {string} splitMessage
+ * @param {string} message
+ * @returns message
  */
 function pollTest1(splitMessage , message) {
     const poll = splitMessage[2]
@@ -62,8 +65,9 @@ function pollTest1(splitMessage , message) {
 
 /**Used to test multiple choice poll 
  * @alias module:poll~pollTest2 
- * @param splitMessage
- * @param message
+ * @param {string} splitMessage
+ * @param {string} message
+ * @returns message 
 */
 function pollTest2(splitMessage , message) {
     const poll = splitMessage[2]

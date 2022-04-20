@@ -23,8 +23,8 @@ var REMINDER_HOUR = 8; //default 8am
 /** 
  * @alias module:reminder~assign 
  * @desc Add assignment to reminders list
- * @param splitMessage
- * @param message
+ * @param {string} splitMessage
+ * @param {string} message
 */
 function assign(splitMessage, message){
     
@@ -83,7 +83,7 @@ function assign(splitMessage, message){
 /** 
  * @alias module:reminder~remind 
  * @desc Sends a message containing all assignments
- * @param message
+ * @param {string} message
 */
 function remind(message){
 
@@ -111,7 +111,7 @@ function remind(message){
 /**
  *  @alias module:reminder~autoRemind 
  * @desc Sends a reminder of assignments that are soon due periodically
- * @param message
+ * @param {string} message
 */
 function autoRemind(message){
 
@@ -173,8 +173,8 @@ function autoRemind(message){
 /**
  *  @alias module:reminder~changeReminderHour 
  * @desc Sets REMINDER_HOUR
- * @param splitMessage
- * @param message
+ * @param {string} splitMessage
+ * @param {string} message
  */
 function changeReminderHour(splitMessage, message){
     const assignEmbed = new MessageEmbed()
@@ -212,8 +212,8 @@ function changeReminderHour(splitMessage, message){
 /** 
  * @alias module:reminder~deleteAssignment 
  * @dsec Deletes an assignment from assignments[] based on ID of assignment
- * @param splitMessage
- * @param message
+ * @param {string} splitMessage
+ * @param {string} message
 */
 function deleteAssignment(splitMessage, message){
     const assignEmbed = new MessageEmbed()
@@ -247,7 +247,7 @@ function deleteAssignment(splitMessage, message){
 /** 
  * @alias module:reminder~clearAssignments 
  * @dsec Deletes all assignments
- * @param message
+ * @param {string} message
 */
 function clearAssignments(message){
     assignments = [];
@@ -267,7 +267,7 @@ function assignIDs(){
 /**
  *  @alias module:reminder~assignTest 
  * @desc Used for assign() testing
- * @param message
+ * @param {string} message
 */
 function assignTest(splitMessage , message) {
     message.channel.send("Assignment added!");
@@ -275,7 +275,7 @@ function assignTest(splitMessage , message) {
 /** 
  * @alias module:reminder~remindTest 
  * @desc Used for remind() testing
- * @param message
+ * @param {string} message
 */
 function remindTest(splitMessage , message) {
     message.channel.send("Message sent!");
@@ -283,7 +283,7 @@ function remindTest(splitMessage , message) {
 /** 
  * @alias module:reminder~autoRemindTest 
  * @desc Used for autoRemind() testing
- * @param message
+ * @param {string} message
 */
 function autoRemindTest(splitMessage , message) {
     message.channel.send("Message sent!");
@@ -291,7 +291,7 @@ function autoRemindTest(splitMessage , message) {
 /** 
  * @alias module:reminder~changeReminderHourTest
  * @desc Used for changeReminderHour() testing
- * @param message
+ * @param {string} message
  */
 function changeReminderHourTest(splitMessage , message) {
     message.channel.send("REMINDER_HOUR changed!");
@@ -299,7 +299,7 @@ function changeReminderHourTest(splitMessage , message) {
 /** 
  * @alias module:reminder~deleteAssignmentTest
  * @desc Used for deleteAssignment() testing
- * @param message
+ * @param {string} message
  */
 function deleteAssignmentTest(splitMessage , message) {
     message.channel.send("ID Assignment deleted!");
@@ -307,7 +307,7 @@ function deleteAssignmentTest(splitMessage , message) {
 /** 
  * @alias module:reminder~clearAssignmentsTest 
  * @desc Used for clearAssignments() testing
- * @param message
+ * @param {string} message
 */
 function clearAssignmentsTest(splitMessage , message) {
     message.channel.send("Assignments cleared!");

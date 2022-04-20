@@ -6,12 +6,11 @@
 require('dotenv').config()
 /**
  * 
- * @augments discord.js 
+ * 
 */
 const { Client , Intents, MessageEmbed, MessageReaction } = require('discord.js')
 /**
- * @constructor
- * @augments Client
+ * @constructs Client
 */
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS ] });
 /**@requires help */
@@ -29,7 +28,12 @@ const channel = require("./channel.js")
 /**@requires notification */
 const notification = require("./notification.js")
 
-/**@func on('ready') */
+/**
+ * @event Client#on
+ * @property {string} ready
+ * @property {string} message
+ * @property {async} message
+*/
 client.on('ready' , () => {
     console.log('TU Bot is online!')
 })
@@ -110,5 +114,8 @@ client.on('message' , async message => {
         }
     }
 })
-
+/**
+ * @event Client#login
+ * @property {env} DISCORD_BOT_TOKEN
+ */
 client.login(process.env.DISCORD_BOT_TOKEN)

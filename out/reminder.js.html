@@ -51,8 +51,8 @@ var REMINDER_HOUR = 8; //default 8am
 /** 
  * @alias module:reminder~assign 
  * @desc Add assignment to reminders list
- * @param splitMessage
- * @param message
+ * @param {string} splitMessage
+ * @param {string} message
 */
 function assign(splitMessage, message){
     
@@ -111,7 +111,7 @@ function assign(splitMessage, message){
 /** 
  * @alias module:reminder~remind 
  * @desc Sends a message containing all assignments
- * @param message
+ * @param {string} message
 */
 function remind(message){
 
@@ -139,7 +139,7 @@ function remind(message){
 /**
  *  @alias module:reminder~autoRemind 
  * @desc Sends a reminder of assignments that are soon due periodically
- * @param message
+ * @param {string} message
 */
 function autoRemind(message){
 
@@ -201,8 +201,8 @@ function autoRemind(message){
 /**
  *  @alias module:reminder~changeReminderHour 
  * @desc Sets REMINDER_HOUR
- * @param splitMessage
- * @param message
+ * @param {string} splitMessage
+ * @param {string} message
  */
 function changeReminderHour(splitMessage, message){
     const assignEmbed = new MessageEmbed()
@@ -240,8 +240,8 @@ function changeReminderHour(splitMessage, message){
 /** 
  * @alias module:reminder~deleteAssignment 
  * @dsec Deletes an assignment from assignments[] based on ID of assignment
- * @param splitMessage
- * @param message
+ * @param {string} splitMessage
+ * @param {string} message
 */
 function deleteAssignment(splitMessage, message){
     const assignEmbed = new MessageEmbed()
@@ -275,7 +275,7 @@ function deleteAssignment(splitMessage, message){
 /** 
  * @alias module:reminder~clearAssignments 
  * @dsec Deletes all assignments
- * @param message
+ * @param {string} message
 */
 function clearAssignments(message){
     assignments = [];
@@ -295,7 +295,7 @@ function assignIDs(){
 /**
  *  @alias module:reminder~assignTest 
  * @desc Used for assign() testing
- * @param message
+ * @param {string} message
 */
 function assignTest(splitMessage , message) {
     message.channel.send("Assignment added!");
@@ -303,7 +303,7 @@ function assignTest(splitMessage , message) {
 /** 
  * @alias module:reminder~remindTest 
  * @desc Used for remind() testing
- * @param message
+ * @param {string} message
 */
 function remindTest(splitMessage , message) {
     message.channel.send("Message sent!");
@@ -311,7 +311,7 @@ function remindTest(splitMessage , message) {
 /** 
  * @alias module:reminder~autoRemindTest 
  * @desc Used for autoRemind() testing
- * @param message
+ * @param {string} message
 */
 function autoRemindTest(splitMessage , message) {
     message.channel.send("Message sent!");
@@ -319,7 +319,7 @@ function autoRemindTest(splitMessage , message) {
 /** 
  * @alias module:reminder~changeReminderHourTest
  * @desc Used for changeReminderHour() testing
- * @param message
+ * @param {string} message
  */
 function changeReminderHourTest(splitMessage , message) {
     message.channel.send("REMINDER_HOUR changed!");
@@ -327,7 +327,7 @@ function changeReminderHourTest(splitMessage , message) {
 /** 
  * @alias module:reminder~deleteAssignmentTest
  * @desc Used for deleteAssignment() testing
- * @param message
+ * @param {string} message
  */
 function deleteAssignmentTest(splitMessage , message) {
     message.channel.send("ID Assignment deleted!");
@@ -335,7 +335,7 @@ function deleteAssignmentTest(splitMessage , message) {
 /** 
  * @alias module:reminder~clearAssignmentsTest 
  * @desc Used for clearAssignments() testing
- * @param message
+ * @param {string} message
 */
 function clearAssignmentsTest(splitMessage , message) {
     message.channel.send("Assignments cleared!");
@@ -354,13 +354,13 @@ module.exports = {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-channel.html">channel</a></li><li><a href="module-generateGroups.html">generateGroups</a></li><li><a href="module-help.html">help</a></li><li><a href="module-index.html">index</a></li><li><a href="module-notification.html">notification</a></li><li><a href="module-poll.html">poll</a></li><li><a href="module-reminder.html">reminder</a></li><li><a href="module-roles.html">roles</a></li></ul><h3>Classes</h3><ul><li><a href="module-index-client.html">client</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-channel.html">channel</a></li><li><a href="module-generateGroups.html">generateGroups</a></li><li><a href="module-help.html">help</a></li><li><a href="module-index.html">index</a></li><li><a href="module-notification.html">notification</a></li><li><a href="module-poll.html">poll</a></li><li><a href="module-reminder.html">reminder</a></li><li><a href="module-roles.html">roles</a></li></ul><h3>Classes</h3><ul><li><a href="Client.html">Client</a></li></ul><h3>Events</h3><ul><li><a href="Client.html#event:login">login</a></li><li><a href="Client.html#event:on">on</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Tue Apr 19 2022 19:21:35 GMT-0400 (Eastern Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Tue Apr 19 2022 20:13:36 GMT-0400 (Eastern Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

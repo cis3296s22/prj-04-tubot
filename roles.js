@@ -5,8 +5,8 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 
 /**Creates role from users message 
  * @alias module:roles~createRole 
- * @param splitMessage
- * @param message
+ * @param {string} splitMessage
+ * @param {string} message
 */
 function createRole(splitMessage, message) {
     //Message to inform user on how to use the createRole command
@@ -48,8 +48,8 @@ function createRole(splitMessage, message) {
 
 /**Gives a role to a user
  * @alias module:roles~giveRole 
- * @param splitMessage
- * @param message
+ * @param {string} splitMessage
+ * @param {string} message
 */
 function giveRole(splitMessage, message) {
     //Message to inform user on how to use the createRole command
@@ -107,8 +107,8 @@ function giveRole(splitMessage, message) {
 
 /**Removes a role from a user 
  * @alias module:roles~removeRole 
- * @param splitMessage
- * @param message
+ * @param {string} splitMessage
+ * @param {string} message
 */
 function removeRole(splitMessage, message) {
     //Message to inform user on how to use the createRole command
@@ -165,8 +165,8 @@ function removeRole(splitMessage, message) {
 
 /**Send message to every user with a role 
  * @alias module:roles~messageRole 
- * @param splitMessage
- * @param message
+ * @param {string} splitMessage
+ * @param {string} message
 */
 function messageRole(splitMessage, message) {
     
