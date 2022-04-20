@@ -26,7 +26,8 @@ function assign(splitMessage, message){
     //check if a date is given for the assignment
     let date = splitMessage[splitMessage.length-1];
     const formattedDate = dayjs(date).format("MM/DD");
-
+    let addDate;
+    
     if(formattedDate !== 'Invalid Date' && date.includes('/')){
         addDate = formattedDate.split("/"); //tuple with month and date
         addDate[0] = parseInt(addDate[0])
