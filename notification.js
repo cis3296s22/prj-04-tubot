@@ -10,7 +10,7 @@ const client = new Client({
 var announcements = [];
 /** 
  * @alias module:notification~notify
- * @param {string} splitMessage
+ * @param {string[]} splitMessage
  * @param {string} message
  */
 function notify(splitMessage, message){
@@ -60,7 +60,7 @@ function notify(splitMessage, message){
 
 /** 
  * @alias module:notification~notifyAdd 
- * @param {string} splitMessage
+ * @param {string[]} splitMessage
  * @param {string} message
 */
 function notifyAdd(splitMessage, message){
@@ -91,7 +91,7 @@ function notifyAdd(splitMessage, message){
 }
 /** 
  * @alias module:notification~notifyDelete 
- * @param {string} splitMessage
+ * @param {string[]} splitMessage
  * @param {string} message
 */
 function notifyDelete(splitMessage, message){
@@ -126,7 +126,7 @@ function notifyDelete(splitMessage, message){
 }
 /** 
  * @alias module:notification~notifyClear 
- * @param {string} splitMessage
+ * @param {string[]} splitMessage
  * @param {string} message
 */
 function notifyClear(splitMessage, message){
@@ -136,7 +136,7 @@ function notifyClear(splitMessage, message){
 
 /** 
  * @alias module:notification~notifyAll 
- * @param {string} splitMessage
+ * @param {string[]} splitMessage
  * @param {string} message
 */
 function notifyAll(splitMessage, message){

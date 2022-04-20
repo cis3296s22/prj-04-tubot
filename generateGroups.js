@@ -4,7 +4,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 
 /** Generates random groups
  * @alias module:generateGroups~generateGroups
- * @param {string} splitMessage
+ * @param {string[]} splitMessage
  * @param {string} message
  */
 async function generateGroups(splitMessage, message) {

@@ -5,7 +5,7 @@ const { Client , Intents, MessageEmbed } = require('discord.js')
 /** 
  * @alias module:channel~text 
  * @desc Creates text channel 
- * @param {string} splitMessage 
+ * @param {string[]} splitMessage 
  * @param {string} message
 */
 function text(splitMessage , message) {
@@ -36,7 +36,7 @@ function text(splitMessage , message) {
 /** 
  * @alias module:channel~voice
  * @desc Creates voice channel
- * @param {string} splitMessage
+ * @param {string[]} splitMessage
  * @param {string} message
  */
 function voice(splitMessage , message) {
@@ -55,7 +55,7 @@ function voice(splitMessage , message) {
 /**
  * @alias module:channel~textTest 
  * @desc Used to test text channel function
- * @param {string} splitMessage
+ * @param {string[]} splitMessage
  * @param {string} message
 */
 function textTest(splitMessage , message) {
@@ -65,7 +65,7 @@ function textTest(splitMessage , message) {
 /**
  * @alias module:channel~voiceTest 
  * @desc Used to test voice channel function
- * @param {string} splitMessage
+ * @param {string[]} splitMessage
  * @param {string} message
  */
 function voiceTest(splitMessage , message) {

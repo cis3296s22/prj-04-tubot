@@ -1,9 +1,6 @@
 /** @module reminder */
 const { Client , Intents, MessageEmbed, Message } = require('discord.js')
-/**
- * @var dayjs
- * @requires dayjs
- */
+
 var dayjs = require('dayjs')
 dayjs().format()
 
@@ -28,7 +25,7 @@ var REMINDER_HOUR = 8; //default 8am
 /** 
  * @alias module:reminder~assign 
  * @desc Add assignment to reminders list
- * @param {string} splitMessage
+ * @param {string[]} splitMessage
  * @param {string} message
 */
 function assign(splitMessage, message){
@@ -184,7 +181,7 @@ function autoRemind(message){
 /**
  *  @alias module:reminder~changeReminderHour 
  * @desc Sets REMINDER_HOUR
- * @param {string} splitMessage
+ * @param {string[]} splitMessage
  * @param {string} message
  */
 function changeReminderHour(splitMessage, message){
@@ -223,7 +220,7 @@ function changeReminderHour(splitMessage, message){
 /** 
  * @alias module:reminder~deleteAssignment 
  * @dsec Deletes an assignment from assignments[] based on ID of assignment
- * @param {string} splitMessage
+ * @param {string[]} splitMessage
  * @param {string} message
 */
 function deleteAssignment(splitMessage, message){
@@ -278,6 +275,7 @@ function assignIDs(){
 /**
  *  @alias module:reminder~assignTest 
  * @desc Used for assign() testing
+ * @param {string[]} splitMessage
  * @param {string} message
 */
 function assignTest(splitMessage , message) {
@@ -286,6 +284,7 @@ function assignTest(splitMessage , message) {
 /** 
  * @alias module:reminder~remindTest 
  * @desc Used for remind() testing
+ * @param {string[]} splitMessage
  * @param {string} message
 */
 function remindTest(splitMessage , message) {
@@ -294,6 +293,7 @@ function remindTest(splitMessage , message) {
 /** 
  * @alias module:reminder~autoRemindTest 
  * @desc Used for autoRemind() testing
+ * @param {string[]} splitMessage
  * @param {string} message
 */
 function autoRemindTest(splitMessage , message) {
@@ -302,6 +302,7 @@ function autoRemindTest(splitMessage , message) {
 /** 
  * @alias module:reminder~changeReminderHourTest
  * @desc Used for changeReminderHour() testing
+ * @param {string[]} splitMessage
  * @param {string} message
  */
 function changeReminderHourTest(splitMessage , message) {
@@ -310,6 +311,7 @@ function changeReminderHourTest(splitMessage , message) {
 /** 
  * @alias module:reminder~deleteAssignmentTest
  * @desc Used for deleteAssignment() testing
+ * @param {string[]} splitMessage
  * @param {string} message
  */
 function deleteAssignmentTest(splitMessage , message) {
@@ -318,6 +320,7 @@ function deleteAssignmentTest(splitMessage , message) {
 /** 
  * @alias module:reminder~clearAssignmentsTest 
  * @desc Used for clearAssignments() testing
+ * @param {string[]} splitMessage
  * @param {string} message
 */
 function clearAssignmentsTest(splitMessage , message) {

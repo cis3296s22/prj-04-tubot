@@ -1,18 +1,21 @@
 /** @module index */
+/** @interface Discord */
 
 require('dotenv').config()
-/** @interface Discord */
+
 /** @constructor Intents */
 /** @constructor MessageEmbed */
 /** @constructor MessageReaction */
 /** @constructor Client */
+
 const { Client , Intents, MessageEmbed, MessageReaction } = require('discord.js')
 /**
- * @const client
- * @instance Client
+ * @const {Client} client
+ * 
 */
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS ] });
-/**@requires help */
+/**
+ * @requires help */
 const help = require("./help.js")
 /**@requires poll */
 const poll = require("./poll.js");
@@ -29,6 +32,7 @@ const notification = require("./notification.js")
 
 /**
  * @event Client#on
+ * @desc Listening function for client on event
  * @property {string} ready
  * @property {string} message
  * @property {async} message
@@ -119,6 +123,7 @@ client.on('message' , async message => {
 })
 /**
  * @event Client#login
- * @property {env} DISCORD_BOT_TOKEN
+ * @desc Listening function for client login event
+ * @property {process.env} DISCORD_BOT_TOKEN
  */
 client.login(process.env.DISCORD_BOT_TOKEN)

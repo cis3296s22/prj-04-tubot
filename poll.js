@@ -3,7 +3,7 @@ const { Client, Intents, MessageEmbed, MessageReaction } = require('discord.js')
 
 /**Creates a poll 
  * @alias module:poll~poll 
- * @param {string} splitMessage
+ * @param {string[]} splitMessage
  * @param {string} message
 */
 function poll(splitMessage, message) {
@@ -59,7 +59,7 @@ function poll(splitMessage, message) {
 
 /** Used to test yes/no poll 
  * @alias module:poll~pollTest1 
- * @param {string} splitMessage
+ * @param {string[]} splitMessage
  * @param {string} message
  * @returns message
  */
@@ -70,7 +70,7 @@ function pollTest1(splitMessage , message) {
 
 /**Used to test multiple choice poll 
  * @alias module:poll~pollTest2 
- * @param {string} splitMessage
+ * @param {string[]} splitMessage
  * @param {string} message
  * @returns message 
 */
