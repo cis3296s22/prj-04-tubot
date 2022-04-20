@@ -1,17 +1,37 @@
 # TU-Bot
-This is a practical implementation of a multi-purpose Discord bot with the intended use for professors and students to effectively communicate and use meaningful tools in the Discord application. With the hardest parts of quarantine behind us, many students and professors have created Discord accounts and Discord servers to communicate effectively with each other. In the online semesters, many students have picked up the platform and now use it in their everyday life for not just school – as Discord has created a social platform for students to create friendships and properly communicate and collaborate on schoolwork. TU Bot is a concept that strives to be used in all Temple University affiliated servers, with a large scope of helpful tools and commands that would be used for professors and students so that they can make the Discord platform even more convenient for them. Meaningful tools include things like appointment schedulers, academic reminders, categorized/organized notifications, group creators, collaboration toolkits etc. If development time allows it, the bot will strive to web-scrape Canvas for even more uses, perhaps with real-time notifications from Canvas.
+TU-Bot is a practical implementation of a multi-purpose Discord bot with the intended use for professors and students to effectively communicate and use meaningful tools in the Discord application.
 
-# How to run   
-- Download the latest binary from the Release section on the right on GitHub.  
-- On the command line, access the release folder using
-```
-cd tu-bot  
-```
-- On the command line run with
-```
-node index.js
-```
-- TU Bot will give a confirmation of online status on the command line, and it will be ready to be used in your server!
+# Commands
+
+- $tu hello: Has the bot say "Hi!"
+- $tu bye: Has the bot say "Goodbye!"
+- $tu poll: Creates a poll in the channel that members can vote on
+- $tu assign: Adds an assignment to the reminder list
+- $tu remind: Sends embed containing all assignments
+- $tu remindtime: Sets time that automatic reminders are sent
+- $tu assigndelete: Deletes an assignment
+- $tu assignclear: Clears all assignments
+- $tu createRole: Creates role from users message
+- $tu giveRole: Gives a role to a user
+- $tu removeRole: Removes a role from a user
+- $tu msgRole: Sends a message to all members with a given role
+- $tu textchat: Creates a text chat channel
+- $tu voicechat: Creates a voice chat channel
+- $tu notify: Create announcements and notify users with NotifyRole
+- $tu help: Displays this list of commands and their descriptions
+
+# First time set-up
+- Download the latest binary from the Release section on the right on GitHub.
+- Create .env file and store personal bot token (use .env.example)
+- You're now ready to run the bot!
+
+# How to run on Windows
+- Run tu-bot.cmd
+- TU-Bot is now running!
+
+# How to run on MacOSX
+- Run tu-bot-mac.command
+- TU-Bot is now running!
 
 # How to contribute
 Follow this project board to know the latest status of the project: [https://trello.com/tubot2]  
@@ -30,6 +50,5 @@ Follow this project board to know the latest status of the project: [https://tre
 ### How to build
 - Use this github repository: https://github.com/cis3296s22/tu-bot
 - Specify what branch to use
-- Use any JavaScript IDE (VSCode, WebStorm, etc.)
 - Create .env file and store personal bot token (use .env.example)
-- Run bot using 'node index.js' in command line to start bot.
+- Use any JavaScript IDE (VSCode, WebStorm, etc.) to begin development!

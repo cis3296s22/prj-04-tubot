@@ -39,77 +39,81 @@ client.on('ready' , () => {
 
 client.on('message' , async message => {
     const splitMessage = message.content.split(' ')
-    if(splitMessage[0] == '$tu') {
-        const command = splitMessage[1]
+
+    if(message.member.roles.cache.some(r => r.name === "Admin")){
+        if(splitMessage[0] == '$tu') {
+            const command = splitMessage[1]
         
-        if(!command) {
-            return
-        }
-        if(command.toLowerCase() == 'hello') {
-            await message.reply("Hi!")
-        }
-        //test commit for pull request
-        if(command.toLowerCase() == 'bye') {
-            await message.reply("Goodbye!")
-        }
+            if(!command) {
+                return
+            }
+            if(command.toLowerCase() == 'hello') {
+                await message.reply("Hi!")
+            }
+            //test commit for pull request
+            if(command.toLowerCase() == 'bye') {
+                await message.reply("Goodbye!")
+            }
 
-        if(command.toLowerCase() == 'help'){
-            help.help(splitMessage, message);
-        }
+            if(command.toLowerCase() == 'help'){
+                help.help(splitMessage, message);
+            }
 
-        if (command.toLowerCase() == 'poll'){
-            poll.poll(splitMessage, message);
-        }
+            if (command.toLowerCase() == 'poll'){
+                poll.poll(splitMessage, message);
+            }
 
-        if (command.toLowerCase() == 'assign'){
-            reminder.assign(splitMessage, message);
-        }
+            if (command.toLowerCase() == 'assign'){
+                reminder.assign(splitMessage, message);
+            }
 
-        if(command.toLowerCase() == 'remind'){
-            reminder.remind(message);
-        }
+            if(command.toLowerCase() == 'remind'){
+                reminder.remind(message);
+            }
 
-        if(command.toLowerCase() == 'remindtime'){
-            reminder.changeReminderHour(splitMessage, message);
-        }
+            if(command.toLowerCase() == 'remindtime'){
+                reminder.changeReminderHour(splitMessage, message);
+            }
 
-        if(command.toLowerCase() == 'assigndelete'){
-            reminder.deleteAssignment(splitMessage, message);
-        }
+            if(command.toLowerCase() == 'assigndelete'){
+                reminder.deleteAssignment(splitMessage, message);
+            }
 
-        if(command.toLowerCase() == 'assignclear'){
-            reminder.clearAssignments(message);
-        }
+            if(command.toLowerCase() == 'assignclear'){
+                reminder.clearAssignments(message);
+            }
 
-        if(command.toLowerCase() == 'createrole'){
-            roles.createRole(splitMessage,message);
-        }
+            if(command.toLowerCase() == 'createrole'){
+                roles.createRole(splitMessage,message);
+            }
 
-        if(command.toLowerCase() == 'giverole'){
-            roles.giveRole(splitMessage,message);
-        }
+            if(command.toLowerCase() == 'giverole'){
+                roles.giveRole(splitMessage,message);
+            }
 
-        if(command.toLowerCase() == 'removerole'){
-            roles.removeRole(splitMessage,message);
-        }
+            if(command.toLowerCase() == 'removerole'){
+                roles.removeRole(splitMessage,message);
+            }
 
-        if(command.toLowerCase() == 'msgrole'){
-            roles.messageRole(splitMessage, message);
-        }
+            if(command.toLowerCase() == 'msgrole'){
+                roles.messageRole(splitMessage, message);
+            }
 
-        if(command.toLowerCase() == 'textchat') {
-            channel.text(splitMessage , message);
-        }
-        if(command.toLowerCase() == 'voicechat') {
+            if(command.toLowerCase() == 'textchat') {
+                channel.text(splitMessage , message);
+            }
+
+            if(command.toLowerCase() == 'voicechat') {
             channel.voice(splitMessage , message);
-        }
+            }
 
-        if(command.toLowerCase() == 'notify'){
-            notification.notify(splitMessage, message)
-        }
+            if(command.toLowerCase() == 'notify'){
+                notification.notify(splitMessage, message)
+            }
       
-        if(command.toLowerCase() == 'generategroups') {
-            generateGroups.generateGroups(splitMessage , message);
+            if(command.toLowerCase() == 'generategroups') {
+                generateGroups.generateGroups(splitMessage , message);
+            }
         }
     }
 })
