@@ -1,5 +1,6 @@
-const { Client , Intents, MessageEmbed } = require('discord.js')
 /** @module channel */
+const { Client , Intents, MessageEmbed } = require('discord.js')
+
 
 /** 
  * @alias module:channel~text 
@@ -8,6 +9,10 @@ const { Client , Intents, MessageEmbed } = require('discord.js')
  * @param {string} message
 */
 function text(splitMessage , message) {
+    /**
+     * @const {string} channelName 
+     * @protected
+    */
     const channelName = splitMessage[2]
     console.log(splitMessage)
     console.log(message.guild.channels)
@@ -16,6 +21,11 @@ function text(splitMessage , message) {
     })
     
     .then((channel) => { // Puts it into main text channel category
+        /**
+         * @const {string} category 
+         * @default '937897944227667978'
+         * @protected
+        */
         const category = '937897944227667978' // Category ID
         channel.setParent(category)
     })

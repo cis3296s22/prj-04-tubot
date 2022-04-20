@@ -1,7 +1,5 @@
+/**@module poll */
 const { Client, Intents, MessageEmbed, MessageReaction } = require('discord.js')
-/** 
- * @module poll 
-*/
 
 /**Creates a poll 
  * @alias module:poll~poll 
@@ -9,8 +7,15 @@ const { Client, Intents, MessageEmbed, MessageReaction } = require('discord.js')
  * @param {string} message
 */
 function poll(splitMessage, message) {
+    /**
+     * @const {array} nums
+     * @protected
+     */
     const nums = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣"];
-    //Error message if too few arguments ar given
+    /**Error message if too few arguments ar given
+     * @const {MessageEmbed} pollEmbed
+     * @protected
+     */
     const pollEmbed = new MessageEmbed()
         .setTitle("How to make a poll")
         .setDescription("Ask a question for a yes or no poll\n" +

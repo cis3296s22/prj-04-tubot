@@ -1,16 +1,15 @@
-/**
- * @module index 
- * 
-*/
+/** @module index */
 
 require('dotenv').config()
-/**
- * 
- * 
-*/
+/** @interface Discord */
+/** @constructor Intents */
+/** @constructor MessageEmbed */
+/** @constructor MessageReaction */
+/** @constructor Client */
 const { Client , Intents, MessageEmbed, MessageReaction } = require('discord.js')
 /**
- * @constructs Client
+ * @const client
+ * @instance Client
 */
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS ] });
 /**@requires help */

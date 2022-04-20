@@ -1,9 +1,10 @@
+/** @module notification */
 const { Client, Intents, MessageEmbed, Message, MessageReaction } = require('discord.js')
 const client = new Client({
 	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS],
 	partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
 });
-/** @module notification */
+
 
 /**@var {array} announcements */
 var announcements = [];
@@ -21,7 +22,7 @@ function notify(splitMessage, message){
 
     //(TO BE IMPLEMENTED LATER)
     //"Use $tu notify signup to create a sign up message, those who react will get notifications from notify\n"
-
+    
     const notifyEmbed = new MessageEmbed()
         .setTitle("How to create announcements and notify users with the notification role")
         .setDescription("Use $tu notify add to add an announcement\n"

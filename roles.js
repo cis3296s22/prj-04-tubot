@@ -1,6 +1,7 @@
+/** @module roles */
 const { Client, Intents, MessageEmbed, MessageReaction } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS] });
-/** @module roles */
+
 
 
 /**Creates role from users message 
@@ -9,7 +10,10 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
  * @param {string} message
 */
 function createRole(splitMessage, message) {
-    //Message to inform user on how to use the createRole command
+    /**Message to inform user on how to use the createRole command
+     * @const {MessageEmbed} createEmbed
+     * @protected
+     */ 
     const createEmbed = new MessageEmbed()
     .setTitle("How to create a role")
     .setDescription("Type the new role name after the command\n" +
@@ -52,7 +56,10 @@ function createRole(splitMessage, message) {
  * @param {string} message
 */
 function giveRole(splitMessage, message) {
-    //Message to inform user on how to use the createRole command
+    /**Message to inform user on how to use the createRole command
+     * @const {MessageEmbed} giveEmbed
+     * @protected
+     */ 
     const giveEmbed = new MessageEmbed()
     .setTitle("How to give a user a role")
     .setDescription("Type @ user name and the role you want to give\n" +
@@ -111,7 +118,10 @@ function giveRole(splitMessage, message) {
  * @param {string} message
 */
 function removeRole(splitMessage, message) {
-    //Message to inform user on how to use the createRole command
+    /**Message to inform user on how to use the createRole command
+     * @const {MessageEmbed} removeEmbed
+     * @protected
+     */ 
     const removeEmbed = new MessageEmbed()
     .setTitle("How to revoke a user's role")
     .setDescription("Type @ user name and the role you want to revoke\n" +

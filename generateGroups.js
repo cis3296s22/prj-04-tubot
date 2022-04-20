@@ -1,3 +1,4 @@
+
 const { Client, Intents, MessageEmbed, MessageReaction } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
@@ -10,7 +11,10 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
  * @param {string} message
  */
 function generateGroups(splitMessage, message) {
-    //Message to inform user how to use the command
+    /**Message to inform user how to use the command
+     * @const {MessageEmbed} groupEmbed
+     * @protected
+     */  
     const groupEmbed = new MessageEmbed()
     .setTitle("How to generate groups")
     .setDescription("Type in the number of groups you want to generate and the name\n"

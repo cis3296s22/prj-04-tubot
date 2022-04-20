@@ -1,7 +1,12 @@
+/** @module reminder */
 const { Client , Intents, MessageEmbed, Message } = require('discord.js')
+/**
+ * @var dayjs
+ * @requires dayjs
+ */
 var dayjs = require('dayjs')
 dayjs().format()
-/** @module reminder */
+
 
 /** 
  * @var {array} assignments
@@ -27,7 +32,10 @@ var REMINDER_HOUR = 8; //default 8am
  * @param {string} message
 */
 function assign(splitMessage, message){
-    
+    /**
+     * @const {MessageEmbed} assignEmbed
+     * @protected
+     */
     const assignEmbed = new MessageEmbed()
             .setTitle("How to add assignment")
             .setDescription("Use $tu assign to add an assignment\n" +
@@ -100,7 +108,10 @@ function remind(message){
     if(assignments.length < 1){
         allAssignments += 'There are no assignments due!'
     }
-    
+    /**
+     * @const {MessageEmbed} remindEmbed
+     * @protected
+     */
     const remindEmbed = new MessageEmbed()
             .setTitle("Assignments Due")
             .setDescription(allAssignments);
